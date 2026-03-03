@@ -50,11 +50,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Developing
 
-### James Doe
+### Toh Jun Yee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/desnen.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/desnen)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
