@@ -4,6 +4,8 @@
 ![Ui](docs/images/Ui.png)
 
 ## Overview
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 **LeTutor** is a desktop application that helps Software Engineering course tutors manage and review GitHub pull requests more efficiently than using the GitHub web interface.
 
 It allows tutors to quickly find PRs from their assigned students, track review progress, and keep review work organised. For course managers (e.g., professors, head TAs), it provides visibility into review activity so they can monitor whether PRs are being handled in a timely and consistent manner.
