@@ -459,7 +459,7 @@ Preconditions: Target student already exists in the directory.
 
 * 2a. Student index out of bounds. 
   
-     * 4a1. System displays message saying "Invalid student"
+     * 2a1. System displays message saying "Invalid student"
        
         Use case resumes from step 2.
 
