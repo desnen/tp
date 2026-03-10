@@ -339,6 +339,73 @@ Preconditions:
 
   Use case ends.
 
+**Use case 5: View Milestone Progress**
+
+Name: View milestone progress
+
+Actor: Tutor
+
+System: Legoat
+
+Preconditions: Teacher is signed in, Milestone exists for student
+
+**MSS**
+
+1. Teacher opens the student profile.
+2. Teacher navigates to the assignments/milestones progress section.
+3. System displays all predefined assignments/milestones as status bubbles.
+4. System shows the current status of each bubble (e.g., completed, pending, overdue).
+5. Teacher reviews the student’s progress across all milestones.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. No predefined milestones exist
+  
+     * 4a1. System shows an empty state message.
+  
+        Use case ends.
+ 
+**Use case 6: Edit Observation Note**
+
+Name: Edit Lesson Observation Note
+
+Actor: Tutor
+
+System: Legoat
+
+Preconditions: Teacher is signed in, At least one observation exists for the student
+
+**MSS**
+
+1. Teacher opens the student profile and the observations list.
+2. Teacher selects an existing observation.
+3. Teacher chooses “Edit”.
+4. Teacher updates the note content.
+System saves the updated note, optionally tracking edit metadata.
+UI refreshes the observation content.
+
+
+Use case ends.
+
+**Extensions**
+
+* 4a. Empty notes
+  
+     * 4a1. System shows an error message
+  
+        Use case resumes at step 3.
+
+* 5a. Save fail
+  
+    * 5a1. System shows an error message, draft kept locally for retry
+
+      Use case resumes at step 4.
+
+* *a. At any time, user chooses to cancel adding observations
+
+  Use case ends.
     
 
 *{More to be added}*
