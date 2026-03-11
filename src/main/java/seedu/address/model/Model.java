@@ -5,6 +5,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.milestone.AssignmentId;
+import seedu.address.model.milestone.CompletedAt;
+import seedu.address.model.milestone.MilestoneRecord;
+import seedu.address.model.milestone.MilestoneStatus;
+import seedu.address.model.milestone.StudentId;
+import seedu.address.model.milestone.StudentMilestones;
 import seedu.address.model.person.Person;
 
 /**
@@ -84,4 +90,32 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    // =========================== Feature 2: Milestones ===========================
+
+    /**
+     * Returns the milestone records for the given student.
+     */
+    StudentMilestones getMilestones(StudentId studentId);
+
+    /**
+     * Sets one milestone record for the given student-assignment pair.
+     */
+    void setMilestone(StudentId studentId, AssignmentId assignmentId,
+                      MilestoneStatus status, CompletedAt completedAt);
+
+    /**
+     * Removes all milestone records for the given student.
+     */
+    void removeAllMilestonesForStudent(StudentId studentId);
+
+    /**
+     * Removes all milestone records tied to the given assignment.
+     */
+    void removeAllMilestonesForAssignment(AssignmentId assignmentId);
+
+    /**
+     * Returns the milestone record for the given student-assignment pair, or null if absent.
+     */
+    MilestoneRecord getMilestone(StudentId studentId, AssignmentId assignmentId);
 }

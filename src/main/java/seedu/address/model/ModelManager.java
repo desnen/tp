@@ -11,6 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.milestone.AssignmentId;
+import seedu.address.model.milestone.CompletedAt;
+import seedu.address.model.milestone.MilestoneRecord;
+import seedu.address.model.milestone.MilestoneStatus;
+import seedu.address.model.milestone.StudentId;
+import seedu.address.model.milestone.StudentMilestones;
 import seedu.address.model.person.Person;
 
 /**
@@ -107,7 +113,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -128,6 +133,42 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Feature 2: Milestones ======================================================================
+
+    @Override
+    public StudentMilestones getMilestones(StudentId studentId) {
+        requireNonNull(studentId);
+        return addressBook.getMilestoneStore().getStudentMilestones(studentId);
+    }
+
+    @Override
+    public void setMilestone(StudentId studentId, AssignmentId assignmentId,
+                             MilestoneStatus status, CompletedAt completedAt) {
+        requireAllNonNull(studentId, assignmentId, status, completedAt);
+        MilestoneRecord milestoneRecord = new MilestoneRecord(status, completedAt);
+        addressBook.getMilestoneStore().setMilestone(studentId, assignmentId, milestoneRecord);
+    }
+
+    @Override
+    public void removeAllMilestonesForStudent(StudentId studentId) {
+        requireNonNull(studentId);
+        addressBook.getMilestoneStore().removeAllForStudent(studentId);
+    }
+
+    @Override
+    public void removeAllMilestonesForAssignment(AssignmentId assignmentId) {
+        requireNonNull(assignmentId);
+        addressBook.getMilestoneStore().removeAllForAssignment(assignmentId);
+    }
+
+    @Override
+    public MilestoneRecord getMilestone(StudentId studentId, AssignmentId assignmentId) {
+        requireAllNonNull(studentId, assignmentId);
+        return addressBook.getMilestoneStore()
+                .getMilestone(studentId, assignmentId)
+                .orElse(null);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -144,5 +185,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

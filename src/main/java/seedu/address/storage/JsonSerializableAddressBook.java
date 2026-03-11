@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.milestone.FlatMilestoneEntry;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,13 +23,20 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedMilestoneEntry> milestones = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and milestones.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("milestones") List<JsonAdaptedMilestoneEntry> milestones) {
+        if (persons != null) {
+            this.persons.addAll(persons);
+        }
+        if (milestones != null) {
+            this.milestones.addAll(milestones);
+        }
     }
 
     /**
@@ -37,7 +45,13 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        persons.addAll(source.getPersonList().stream()
+                .map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
+
+        milestones.addAll(source.getMilestoneStore().toFlatList().stream()
+                .map(JsonAdaptedMilestoneEntry::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -47,6 +61,7 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
+
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
@@ -54,7 +69,15 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+
+        for (JsonAdaptedMilestoneEntry jsonAdaptedMilestoneEntry : milestones) {
+            FlatMilestoneEntry flatMilestoneEntry = jsonAdaptedMilestoneEntry.toModelType();
+            addressBook.getMilestoneStore().setMilestone(
+                    flatMilestoneEntry.getStudentId(),
+                    flatMilestoneEntry.getAssignmentId(),
+                    flatMilestoneEntry.getMilestoneRecord());
+        }
+
         return addressBook;
     }
-
 }

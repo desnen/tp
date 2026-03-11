@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.milestone.MilestoneStore;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -16,6 +17,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final MilestoneStore milestoneStore;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +28,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        milestoneStore = new MilestoneStore();
     }
 
     public AddressBook() {}
@@ -49,12 +52,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the milestone store with {@code milestoneStore}.
+     */
+    public void setMilestoneStore(MilestoneStore milestoneStore) {
+        requireNonNull(milestoneStore);
+        this.milestoneStore.setMilestones(milestoneStore);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setMilestoneStore(newData.getMilestoneStore());
     }
 
     //// person-level operations
@@ -100,6 +112,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("milestoneStore", milestoneStore)
                 .toString();
     }
 
@@ -109,22 +122,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public MilestoneStore getMilestoneStore() {
+        return milestoneStore;
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        // instanceof handles nulls
         if (!(other instanceof AddressBook)) {
             return false;
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons);
+        return persons.equals(otherAddressBook.persons)
+                && milestoneStore.equals(otherAddressBook.milestoneStore);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return 31 * persons.hashCode() + milestoneStore.hashCode();
     }
 }
