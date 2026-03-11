@@ -274,13 +274,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Manages a significant number of students across 2 \- 3 groups
+* Manages student assignments and learning progress
+* Needs to assign student or teaching assistant roles to contacts
+* Needs quick access to summarised student information
+* Needs to keep track of student assignment information
+* Needs to record notes or observations for particular contacts
+* Needs to identify struggling students
+* Prefers using a keyboard CLI over complex graphical interface
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: 
+
+All-in-one student management system tailored for tutors and teaching assistants, relieving the need to use more than 1 application to track student information.
 
 
 ### User stories
@@ -298,48 +303,286 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Use cases
+## Use cases
 
-
-**Use case 1: Add Student Profile**
+### Use case 1: Add Student Profile
 
 Name: Add Student Profile
 
-Actor: Tutor
+Actor: Tutor, TA
 
-System: Legoat
-
-Preconditions: 
+System: LeTutor
 
 **MSS**
 
-1.  Tutor opens the Student Directory.
-2.  Tutor chooses “Add student”.
-3.  Tutor enters a valid name and at least one valid contact (phone or email).
-4.  System validates appropriate fields.
-5.  System checks for duplicates.
-6.  UI shows confirmation (“Student added.”).
+1. Tutor inputs command to add student.
+2. Tutor enters a valid name and at least one valid contact (phone or email).
+3. System validates appropriate fields.
+4. System checks for duplicates.
+5. UI shows confirmation “Student added.”.
+   
     Use case ends.
 
 **Extensions**
 
-* 4a. Invalid field formats
+* 3a. Invalid field formats
+  
+     * 3a1. System shows an error message
+  
+        Use case resumes at step 3.
+
+* 4a. Duplicate detected
+  
+    * 4a1. System shows an error message
+
+      Use case resumes at step 3.
+      
+---
+
+### Use case 2: Search and View Student Profile
+
+Name: Search and View Student Profile
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+Preconditions: At least one student exists in the Tutor's directory 
+
+**MSS**
+
+1. Tutor searches for student.
+2. System performs a case-insensitive, partial match on student names.
+3. System displays list of matching students.
+4. Tutor selects a student from the list.
+5. System shows student profile.
+   
+   Use case ends.
+
+**Extensions**
+
+* 3a. No match found.
+  
+     * 3a1. System shows an empty list and message saying "No students found"
+  
+        Use case ends.
+
+* 4a. Tutor decides not to view the student profile.
+
+  Use case ends.
+  
+---
+
+### Use case 3: Edit Student Profile
+
+Name: Edit Student Profile
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+Preconditions: Target student already exists in the directory.
+
+**MSS**
+
+1. Tutor <ins>searches for student (U2) </ins>.
+2. Tutor edits student profile.
+3. Tutor updates one or more fields.
+4. System validates updated fields.
+5. System checks for duplicates.
+6. System updates the student list.
+7. UI shows confirmation "Student updated.".
+   
+   Use case ends.
+
+**Extensions**
+
+* 4a. Invalid fields formats
   
      * 4a1. System shows an error message
   
         Use case resumes at step 3.
 
 * 5a. Duplicate detected
-  
+
     * 5a1. System shows an error message
 
       Use case resumes at step 3.
+      
+---
 
-* *a. At any time, user chooses to cancel adding a student
+### Use case 4: Delete Student Profile
 
-  Use case ends.
+Name: Delete Student Profile
 
-    
+Actor: Tutor, TA
+
+System: LeTutor
+
+Preconditions: Target student already exists in the directory.
+
+**MSS**
+
+1. Tutor <ins>searches for student (U2) </ins>.
+2. Tutor deletes student profile.
+3. System asks for confirmation.
+4. Tutor confirms deletion.
+5. Systems deletes the student and all related fields from this account.
+6. UI shows confirmation message "Student deleted.".
+   Use case ends.
+
+**Extensions**
+
+* 4a. Tutor cancels deletion
+  
+     * 4a1. System aborts deletion
+     * 4a2. System displays message saying "Deletion aborted"
+  
+        Use case ends.
+       
+---
+
+### Use case 5: Star a Student
+
+Name: Star/Unstar Student
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+Preconditions: Target student already exists in the directory.
+
+**MSS**
+
+1. Tutor <ins>searches for student (U2) </ins>.
+2. Tutor types in command to star the student.
+3. System updates the student's starred status
+4. UI shows starred student at the top and displays success message "Student Starred."
+   Use case ends.
+
+**Extensions**
+
+* 2a. Student index out of bounds. 
+  
+     * 2a1. System displays message saying "Invalid student"
+       
+        Use case resumes from step 2.
+
+---
+
+### Use case 10: View the details of an Assignment
+
+Name: View Assignment details
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+**MSS**
+1. Tutor or TA chooses to view the details of an Assignment
+2. Tutor enters the id of the Assignment
+3. System checks if the id is valid
+4. System displays the details of the Assignment
+
+   Use case ends.
+
+**Extensions**
+* 3a. Invalid id
+     * 3a1. System shows an error message
+        
+        Use case resumes at step 2.
+
+---
+
+### Use case 11: Add an Assignment
+
+Name: Add Assignment
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+**MSS**
+1. Tutor or TA chooses to add an Assignment
+2. Tutor or TA enters the label, group, dueDate and order of the Assignment
+3. System checks if the label is valid and not a duplicate
+4. System checks if the group, dueDate and order are valid
+5. System adds the Assignment to the list of Assignments
+6. UI shows confirmation message "Assignment added."
+
+   Use case ends.
+
+**Extensions**
+* 3a. Invalid label or duplicate label
+    * 3a1. System shows an error message
+
+      Use case resumes at step 2.
+* 4a. Invalid group, dueDate or order
+    * 4a1. System shows an error message
+  
+      Use case resumes at step 2.
+
+---
+
+### Use case 12: Edit an Assignment
+
+Name: Edit Assignment
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+Preconditions: Target Assignment already exists in the directory.
+
+**MSS**
+1. Tutor <u>searches for Assignment (U10)</u>.
+2. Tutor or TA chooses to edit the Assignment
+4. Tutor or TA enters the new label, group, dueDate and order of the Assignment
+5. System checks if the new label is valid and not a duplicate
+6. System checks if the new group, dueDate and order are valid
+7. System updates the Assignment with the new details
+8. UI shows confirmation message "Assignment updated."
+
+    Use case ends.
+
+**Extensions**
+* 5a. Invalid label or duplicate label
+    * 5a1. System shows an error message
+
+      Use case resumes at step 4.
+* 6a. Invalid group, dueDate or order
+    * 6a1. System shows an error message
+
+      Use case resumes at step 4.
+
+___
+
+### Use case 13: Delete an Assignment
+
+Name: Delete Assignment
+
+Actor: Tutor, TA
+
+System: LeTutor
+
+Preconditions: Target Assignment already exists in the directory.
+
+**MSS**
+1. Tutor <u>searches for Assignment (U10)</u>.
+2. Tutor or TA chooses to delete the Assignment
+3. System asks for confirmation.
+4. Tutor or TA confirms deletion.
+5. Systems deletes the Assignment from the list of Assignments
+6. UI shows confirmation message "Assignment deleted."
+
+    Use case ends.
+
+**Extensions**
+* 4a. Tutor or TA cancels deletion
+    * 4a1. System aborts deletion
+    * 4a2. System displays message saying "Deletion aborted"
+
+      Use case ends.
 
 *{More to be added}*
 
