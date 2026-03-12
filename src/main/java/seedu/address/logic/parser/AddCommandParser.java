@@ -21,10 +21,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * AddCommandPaser class implements the Parser interface
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    /**
+     * Parses input arguments and returns a new AddCommand object
+     */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);

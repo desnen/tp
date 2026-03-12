@@ -41,6 +41,9 @@ public class AddCommand extends Command {
 
     private final Person toAdd;
 
+    /**
+     * Add a person to the address book.
+     */
     public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
