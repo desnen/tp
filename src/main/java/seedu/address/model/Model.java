@@ -21,11 +21,6 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
     /**
-     * Gets the StudentId of the next student {@code userPrefs}.
-     */
-    StudentId getNextStudentId();
-
-    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -123,4 +118,9 @@ public interface Model {
      * Returns the milestone record for the given student-assignment pair, or null if absent.
      */
     MilestoneRecord getMilestone(StudentId studentId, AssignmentId assignmentId);
+
+    /**
+     * Generates the next available StudentId in the form S1, S2, S3... based on existing persons.
+     */
+    StudentId getNextStudentId();
 }
