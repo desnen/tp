@@ -52,7 +52,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(parts[0]);
         Phone phone = ParserUtil.parsePhone(parts[1]);
         Email email = ParserUtil.parseEmail(parts[2]);
-        Address address = "NUS" // Temporary placeholder
+        Address address = "NUS"; // Temporary placeholder
         Tag tag = new HashSet<>(); //No tags for LeGoat
         Person person = new Person(tempId, name, phone, email, address, tag);
 
