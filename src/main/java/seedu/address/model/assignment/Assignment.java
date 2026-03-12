@@ -64,6 +64,19 @@ public class Assignment {
                 && order.equals(otherAssignment.getOrder());
     }
 
+    /**
+     * Returns true if both Assignments have the same label and group.
+     * This defines a weaker notion of equality between two Assignments.
+     */
+    public boolean isSameAssignment(Assignment otherAssignment) {
+        if (otherAssignment == this) {
+            return true;
+        }
+        return otherAssignment != null
+                && otherAssignment.getLabel().equals(getLabel())
+                && otherAssignment.getGroup().equals(getGroup());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
