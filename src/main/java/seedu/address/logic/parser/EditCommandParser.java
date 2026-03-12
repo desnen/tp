@@ -1,21 +1,22 @@
 package seedu.address.logic.parser;
 
+import java.util.Collection;
+import java.util.Collections;
 import static java.util.Objects.requireNonNull;
+import java.util.Optional;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import seedu.address.commons.core.index.Index;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
@@ -24,13 +25,24 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
+    private static final Pattern STUDENT_EDIT_ARGS_FORMAT = Pattern.compile("\\s*/students\\s+(?<studentId>\\S+)"
+            + "\\s*\\{\\s*\"(?<name>[^\"]*)\"\\s*,\\s*\"(?<phone>[^\"]*)\"\\s*,\\s*\"(?<email>[^\"]*)\""
+            + "\\s*}\\s*");
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @Override
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
+        Optional<EditCommand> studentEditCommand = parseStudentEditFormat(args);
+        if (studentEditCommand.isPresent()) {
+            return studentEditCommand.get();
+        }
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
 
@@ -65,6 +77,31 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code args} into an {@code EditCommand} for the format:
+     * /students STUDENT_ID {"NAME", "PHONE", "EMAIL"}.
+     */
+    private Optional<EditCommand> parseStudentEditFormat(String args) throws ParseException {
+        Matcher matcher = STUDENT_EDIT_ARGS_FORMAT.matcher(args);
+        if (!matcher.matches()) {
+            return Optional.empty();
+        }
+
+        Index index;
+        try {
+            index = ParserUtil.parseIndex(matcher.group("studentId"));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        }
+
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setName(ParserUtil.parseName(matcher.group("name")));
+        editPersonDescriptor.setPhone(ParserUtil.parsePhone(matcher.group("phone")));
+        editPersonDescriptor.setEmail(ParserUtil.parseEmail(matcher.group("email")));
+
+        return Optional.of(new EditCommand(index, editPersonDescriptor));
     }
 
     /**
