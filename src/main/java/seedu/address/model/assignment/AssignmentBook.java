@@ -32,23 +32,38 @@ public class AssignmentBook {
         setAssignments(newData.getAssignmentList());
     }
 
+    /**
+     * Check if an Assignment exists.
+     */
     public boolean hasAssignment(Assignment assignment) {
         requireNonNull(assignment);
         return assignments.contains(assignment);
     }
 
+    /**
+     * Add an assignment to the AssignmentBook
+     */
     public void addAssignment(Assignment assignment) {
         assignments.add(assignment);
     }
 
+    /**
+     * Remove an assignment from the AssignmentBook
+     */
     public void removeAssignment(Assignment assignment) {
         assignments.remove(assignment);
     }
 
+    /**
+     * Set the Assignment whether it is completed
+     */
     public void setAssignment(Assignment target, Assignment editedAssignment) {
         assignments.setAssignment(target, editedAssignment);
     }
 
+    /**
+     * Set multiple assignments at once
+     */
     public void setAssignments(List<Assignment> assignments) {
         this.assignments.setAssignments(assignments);
     }
