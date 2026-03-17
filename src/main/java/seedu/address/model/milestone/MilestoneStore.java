@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import seedu.address.model.person.StudentId;
+
 /**
  * Top-level in-memory milestone store.
  *

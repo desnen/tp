@@ -2,6 +2,7 @@ package seedu.address.model.milestone;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.person.StudentId;
 import seedu.address.model.assignment.AssignmentId;
 
 /**

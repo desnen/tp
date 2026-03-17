@@ -14,6 +14,7 @@ import seedu.address.model.assignment.DueDate;
 import seedu.address.model.assignment.Label;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.GroupId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -85,6 +86,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String groupId} into a {@code GroupId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code groupId} is invalid.
+     */
+    public static GroupId parseGroupId(String groupId) throws ParseException {
+        requireNonNull(groupId);
+        String trimmedGroupId = groupId.trim();
+        if (!GroupId.isValidGroupId(trimmedGroupId)) {
+            throw new ParseException(GroupId.MESSAGE_CONSTRAINTS);
+        }
+        return new GroupId(trimmedGroupId);
     }
 
     /**

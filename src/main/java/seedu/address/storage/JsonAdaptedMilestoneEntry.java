@@ -9,7 +9,7 @@ import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.FlatMilestoneEntry;
 import seedu.address.model.milestone.MilestoneRecord;
 import seedu.address.model.milestone.MilestoneStatus;
-import seedu.address.model.milestone.StudentId;
+import seedu.address.model.person.StudentId;
 
 /**
  * Jackson-friendly version of a milestone entry.
