@@ -146,6 +146,12 @@ public class ModelManager implements Model {
         filteredAssignments.setPredicate(predicate);
     }
 
+    @Override
+    public void updateFilteredIndexList(Person target) {
+        requireNonNull(target);
+        filteredPersons.setPredicate(p -> p.equals(target));
+    }
+
     //=========== Feature 2: Milestones ======================================================================
 
     @Override
