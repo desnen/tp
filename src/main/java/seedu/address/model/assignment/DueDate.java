@@ -42,6 +42,14 @@ public class DueDate {
         }
     }
 
+    /**
+     * Converts Date object into storage string of format "yyyy-mm-dd"
+     * @return storage string of correct format
+     */
+    public String toStorageString() {
+        return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
