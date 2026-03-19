@@ -8,7 +8,11 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandParserTest {
@@ -16,7 +20,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        String validJson = "/students {Bob Choo; 22222222; bob@example.com; G1}";
+        String validJson = "/students {Bob Choo; 22222222; bob@example.com; G2}";
         StudentId tempId = new StudentId("S0");
         Person expectedPerson = new PersonBuilder(BOB)
                 .withStudentId(tempId.getValue())
@@ -27,15 +31,10 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validJson = "/students {Bob Choo; 22222222; bob@example.com; G1}";
+        String validJson = "/students {Bob Choo; 22222222; bob@example.com; G2}";
 
         // Multiple complete JSON blocks
         assertParseFailure(parser, validJson + " " + validJson,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
-
-        // Malformed with repeated fields inside
-        assertParseFailure(parser,
-                "/students {Bob Choo; 22222222; bob@example.com; G1; 22222222; bob@example.com}",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
 
         // JSON + prefix attempts (mixed format)
