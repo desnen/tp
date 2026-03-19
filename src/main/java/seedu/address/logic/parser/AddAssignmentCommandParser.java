@@ -16,7 +16,7 @@ import seedu.address.model.assignment.Label;
  * Parses input arguments and creates a new AddAssignmentCommand object.
  *
  * Expected format:
- * add /assignment {<label>, <group>, <dueDate>}
+ * add /assignment {label, group, dueDate}
  *
  * Example:
  * add /assignment {A-JUnit, Sec3A, 2026-02-20}

@@ -1,15 +1,14 @@
 package seedu.address.model.milestone;
 
-import seedu.address.model.assignment.AssignmentId;
-
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.person.StudentId;
 
 /**

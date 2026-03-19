@@ -43,8 +43,8 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        email.setText(person.getEmail().value);
-        group.setText(person.getGroup());
+        phone.setText("Phone: " + person.getPhone().value);
+        email.setText("Email: " + person.getEmail().value);
+        group.setText("Group: " + person.getGroup());
     }
 }
