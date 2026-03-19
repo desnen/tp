@@ -33,7 +33,8 @@ public class DeleteAssignmentCommandParser implements Parser<DeleteAssignmentCom
         String idText = trimmed.substring(PATH_ASSIGNMENTS.length()).trim();
 
         if (idText.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAssignmentCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(
+                    MESSAGE_INVALID_COMMAND_FORMAT, DeleteAssignmentCommand.MESSAGE_USAGE));
         }
 
         AssignmentId assignmentId = ParserUtil.parseAssignmentId(idText);

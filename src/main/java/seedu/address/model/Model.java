@@ -167,8 +167,4 @@ public interface Model {
      * Generates the next available AssignmentId in the form A1, A2, A3... based on existing assignments.
      */
     AssignmentId getNextAssignmentId();
-
-    /**
-     * Updates the filtered person index list to focus on the given person.
-     */
 }
