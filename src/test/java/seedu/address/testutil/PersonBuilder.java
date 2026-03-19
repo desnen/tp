@@ -1,12 +1,11 @@
 package seedu.address.testutil;
 
-import seedu.address.model.milestone.StudentId;
+import seedu.address.model.group.GroupId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -17,13 +16,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_STUDENT_ID = "S0";
-    public static final String DEFAULT_GROUP_ID = "G0";
+    public static final String DEFAULT_GROUP = "Group";
 
     private StudentId studentId;
     private Name name;
     private Phone phone;
     private Email email;
     private String group;
+
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -33,7 +33,7 @@ public class PersonBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        group = "Hello";
+        group = DEFAULT_GROUP;
     }
 
     /**
@@ -87,13 +87,6 @@ public class PersonBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code GroupId} of the {@code Person} being built.
-     */
-    public PersonBuilder withGroupId(String groupId) {
-        this.groupId = new GroupId(groupId);
-        return this;
-    }
 
     /**
      * Builds and returns the {@code Person} with the configured fields.

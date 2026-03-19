@@ -36,9 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setGroupId(person.getGroupId());
-        descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setGroup(person.getGroup());
     }
 
     /**
@@ -66,30 +64,13 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code GroupId} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Group} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withGroupId(String groupId) {
-        descriptor.setGroupId(new GroupId(groupId));
+    public EditPersonDescriptorBuilder withGroup(String group) {
+        descriptor.setGroup(group);
         return this;
     }
 
-    /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
-     */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
-        return this;
-    }
-
-    /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
-     * that we are building.
-     */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
-        return this;
-    }
 
     public EditPersonDescriptor build() {
         return descriptor;

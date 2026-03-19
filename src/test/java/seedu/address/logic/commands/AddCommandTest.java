@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.MilestoneRecord;
@@ -206,6 +208,36 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredIndexList(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public ObservableList<Assignment> getFilteredAssignmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Assignment> getAssignmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Assignment> getAssignmentById(AssignmentId assignmentId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AssignmentId getNextAssignmentId() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredAssignmentList(Predicate<Assignment> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
