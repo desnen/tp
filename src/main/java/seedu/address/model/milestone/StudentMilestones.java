@@ -1,11 +1,11 @@
 package seedu.address.model.milestone;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.assignment.AssignmentId;
 
