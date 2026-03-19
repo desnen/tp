@@ -171,5 +171,4 @@ public interface Model {
     /**
      * Updates the filtered person index list to focus on the given person.
      */
-    void updateFilteredIndexList(Person personToGet);
 }
