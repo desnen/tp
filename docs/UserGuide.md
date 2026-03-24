@@ -6,7 +6,8 @@
 
 # LeTutor User Guide
 
-LeTutor is a **desktop app for managing students and assignments, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your student and assignment management tasks done faster than traditional GUI apps.
+LeTutor is a **desktop app for managing students and assignments, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). The commands are designed to be concise and consistent so that fast typists can work more efficiently than with traditional mouse-driven apps.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -15,16 +16,18 @@ LeTutor is a **desktop app for managing students and assignments, optimized for 
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+1. Ensure Java 17 or above is installed on your computer.
+2. For macOS, use the exact JDK version specified in the NUS SE-EDU Java installation guide, as mismatched versions may cause the app to fail to start.
+3. Download the latest letutor.jar release file from the project’s GitHub releases page here[link here].
+4. Place the file to the folder you want to use as the home folder for LeTutor.
+5. Open the command line:
+   * On macOS, Open Launchpad, search for Terminal and open it.
+   * On Windows, Press the Windows key and search for PowerShell or Command Prompt, then open it
+6.In the command line, run: cd <folder_where_you_saved_letutor.jar>, followed by java -jar letutor.jar
+7. After a few seconds, the main window will appear.
 
-1. Download the latest `.jar` file from [here](https://github.com/AY2526S2-CS2103T-T08-4/tp/releases/tag/v1.3).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar letutor.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds.<br>
-   ![Ui](images/mvpUi.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -49,22 +52,18 @@ LeTutor is a **desktop app for managing students and assignments, optimized for 
 
 **Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* LeTutor is controlled almost entirely through commands typed into the command box and confirmed with the Enter key.
+  
+* Commands follow a consistent, user-friendly format so that once learned, they are easy to remember and reuse.
+  
+* Words in UPPER_CASE indicate parameters you must supply. For example, in add /students {<NAME>; <PHONE NO.>; <EMAIL>; <GROUP>}, you replace <NAME> with the student’s actual name.
+  
+* Items followed by ... can be repeated any number of times, each item is separated by a , For example, in the <GROUP> field for students we can have G1, G2, G3 …
+  
+* Parameters have to be provided in the specified order during creation of Students and Assignments.
+  
+* Commands that do not take parameters (such as help, list, clear, exit) ignore any extra text after them, so help 123 will be treated as help.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 
 </box>
 
