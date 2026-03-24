@@ -2,23 +2,23 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.GetStudentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.person.StudentId;
 
 /**
- * Parses "get ..." commands.
+ * Parses {@code get} commands for retrieving a student by student ID.
  * Supports:
- * - get /students index
+ * <ul>
+ *   <li>{@code get /students <studentId>}</li>
+ * </ul>
  */
 public class GetStudentCommandParser implements Parser<Command> {
 
     public static final String COMMAND_WORD = "get";
 
-    private static final String PATH_ASSIGNMENTS = "/students";
+    private static final String PATH_STUDENTS = "/students";
 
     @Override
     public Command parse(String args) throws ParseException {
@@ -31,16 +31,12 @@ public class GetStudentCommandParser implements Parser<Command> {
 
         String[] parts = trimmed.split("\\s+");
 
-        if (!parts[0].equals(PATH_ASSIGNMENTS)) {
+        if (parts.length != 2 || !parts[0].equals(PATH_STUDENTS)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GetStudentCommand.MESSAGE_USAGE));
         }
-        try {
-            Index index = ParserUtil.parseIndex(parts[1]);
-            return new GetStudentCommand(index);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        }
+
+        StudentId studentId = ParserUtil.parseStudentId(parts[1]);
+        return new GetStudentCommand(studentId);
     }
 }

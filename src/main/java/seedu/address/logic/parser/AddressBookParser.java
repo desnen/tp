@@ -15,6 +15,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GetStudentCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -74,11 +75,17 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case GetAssignmentCommandParser.COMMAND_WORD:
+        case GetStudentCommand.COMMAND_WORD:
+            if (arguments.trim().startsWith("/students") && arguments.trim().endsWith("/milestones")) {
+                return new GetStudentMilestonesCommandParser().parse(arguments);
+            }
+            if (arguments.trim().startsWith("/students")) {
+                return new GetStudentCommandParser().parse(arguments);
+            }
             if (arguments.trim().startsWith("/assignments")) {
                 return new GetAssignmentCommandParser().parse(arguments);
             }
-            return new GetStudentCommandParser().parse(arguments);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

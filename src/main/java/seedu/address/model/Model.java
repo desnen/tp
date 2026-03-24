@@ -11,6 +11,7 @@ import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.MilestoneRecord;
 import seedu.address.model.milestone.MilestoneStatus;
+import seedu.address.model.milestone.StudentMilestoneView;
 import seedu.address.model.milestone.StudentMilestones;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
@@ -109,6 +110,11 @@ public interface Model {
      * Returns the milestone records for the given student.
      */
     StudentMilestones getMilestones(StudentId studentId);
+
+    /**
+     * Returns the resolved milestone view for the given student.
+     */
+    StudentMilestoneView getResolvedMilestones(StudentId studentId);
 
     /**
      * Sets one milestone record for the given student-assignment pair.

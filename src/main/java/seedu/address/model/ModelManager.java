@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -16,7 +18,9 @@ import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.MilestoneRecord;
+import seedu.address.model.milestone.MilestoneResolver;
 import seedu.address.model.milestone.MilestoneStatus;
+import seedu.address.model.milestone.StudentMilestoneView;
 import seedu.address.model.milestone.StudentMilestones;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
@@ -31,6 +35,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Assignment> filteredAssignments;
+    private final MilestoneResolver milestoneResolver = new MilestoneResolver();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -151,6 +156,16 @@ public class ModelManager implements Model {
     public StudentMilestones getMilestones(StudentId studentId) {
         requireNonNull(studentId);
         return addressBook.getMilestoneStore().getStudentMilestones(studentId);
+    }
+
+    @Override
+    public StudentMilestoneView getResolvedMilestones(StudentId studentId) {
+        requireNonNull(studentId);
+
+        StudentMilestones studentMilestones = getMilestones(studentId);
+        List<Assignment> assignments = new ArrayList<>(getAssignmentList());
+
+        return milestoneResolver.resolveForStudent(studentId, assignments, studentMilestones);
     }
 
     @Override

@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.GroupId;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -172,5 +173,15 @@ public class ParserUtil {
             throw new ParseException(DueDate.MESSAGE_CONSTRAINTS);
         }
         return new DueDate(trimmed);
+    }
+
+    /**
+     * Parses a {@code String studentId} into a {@code StudentId}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static StudentId parseStudentId(String studentId) throws ParseException {
+        requireNonNull(studentId);
+        String trimmedStudentId = studentId.trim();
+        return new StudentId(trimmedStudentId);
     }
 }
