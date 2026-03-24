@@ -41,7 +41,7 @@ public class StudentList {
         requireNonNull(id);
         if (list.contains(id)) {
             throw new AlreadyInGroupException(
-                    "Operation would result in duplicate student ids in specified group");
+                    "Specified student is already in this group!");
         }
         list.add(id);
     }
@@ -57,7 +57,7 @@ public class StudentList {
         requireNonNull(id);
         if (!list.contains(id)) {
             throw new NotInGroupException(
-                    "Specified StudentId is already not in specified group");
+                    "Specified student is not in this group!");
         }
         list.remove(id);
     }
