@@ -247,9 +247,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAssignment(Assignment target, Assignment editedAssignment) {
-            throw new AssertionError("This method should not be called.");
-        }
         public void addStudentToGroup(Group group, StudentId id) {
 
         }
