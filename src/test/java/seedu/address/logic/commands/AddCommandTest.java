@@ -17,6 +17,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,7 +36,6 @@ import seedu.address.model.milestone.StudentMilestoneView;
 import seedu.address.model.milestone.StudentMilestones;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.StudentId;
-import javafx.collections.FXCollections;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
