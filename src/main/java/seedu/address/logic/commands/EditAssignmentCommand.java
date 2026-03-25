@@ -12,8 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.assignment.DueDate;
-import seedu.address.model.group.Group;
 import seedu.address.model.assignment.Label;
+import seedu.address.model.group.Group;
 
 /**
  * Edits the details if an existing assignment in the assignment library

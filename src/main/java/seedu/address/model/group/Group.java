@@ -13,10 +13,11 @@ import seedu.address.model.person.StudentId;
  * Object representing the group that a student belongs to.
  */
 public class Group {
-    private final GroupName name;
-    private final StudentList studentIds;
+
     public static final String MESSAGE_CONSTRAINTS = "Group can take any values, and it should not be blank";
 
+    private final GroupName name;
+    private final StudentList studentIds;
     /**
      * Constructs an {@code Group} with the given value.
      *
