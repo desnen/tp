@@ -74,7 +74,7 @@ public class EditAssignmentCommand extends Command {
                                 && a.getDueDate().equals(editedAssignment.getDueDate())
         );
 
-        if  (duplicate) {
+        if (duplicate) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
@@ -129,6 +129,10 @@ public class EditAssignmentCommand extends Command {
 
         public EditAssignmentDescriptor() {}
 
+        /**
+         * Copy constructor.
+         * @param toCopy The {@code EditAssignmentDescriptor} to copy.
+         */
         public EditAssignmentDescriptor(EditAssignmentDescriptor toCopy) {
             setLabel(toCopy.label);
             setGroup(toCopy.group);

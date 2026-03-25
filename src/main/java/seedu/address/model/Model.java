@@ -164,7 +164,7 @@ public interface Model {
      * {@code target} must exist.
      * The assignment identity of {@code editedAssignment} must not be the same as another existing assignment.
      */
-    void  setAssignment(Assignment target, Assignment editedAssignment);
+    void setAssignment(Assignment target, Assignment editedAssignment);
 
     /**
      * Returns an unmodifiable view of the full assignment list.

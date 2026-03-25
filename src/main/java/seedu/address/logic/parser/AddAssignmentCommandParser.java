@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ParserUtil.parseTuple3;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.logic.commands.AddAssignmentCommand;
@@ -43,7 +42,7 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
         }
 
         String remainder = trimmed.substring(PATH_ASSIGNMENT.length()).trim();
-        List<String> parts = parseTuple3(remainder);
+        List<String> parts = parseTuple3(remainder, AddAssignmentCommand.MESSAGE_USAGE);
 
         Label label = ParserUtil.parseLabel(parts.get(0));
         Group group = ParserUtil.parseGroup(parts.get(1));

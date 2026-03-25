@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ParserUtil.parseTuple3;
 import static seedu.address.logic.parser.ParserUtil.parseTuple3AllowEmpty;
 
 import java.util.List;
@@ -10,14 +9,22 @@ import java.util.List;
 import seedu.address.logic.commands.EditAssignmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.AssignmentId;
-import seedu.address.model.assignment.DueDate;
-import seedu.address.model.assignment.Group;
-import seedu.address.model.assignment.Label;
 
+/**
+ * Parses input arguments and creates a new EditAssignmentCommand object.
+ */
 public class EditAssignmentCommandParser implements Parser<EditAssignmentCommand> {
 
     private static final String PATH_ASSIGNMENT = "/assignment";
 
+    /**
+     * Parses user input and creates a {@code EditAssignmentCommand}.
+     *
+     * @param args full argument string supplied after the {@code edit} command word
+     * @return a {@code EditAssignmentCommand} containing the parsed assignment id and edit descriptor
+     * @throws ParseException if the input does not match {@code /assignment <assignmentId>},
+     *         the assignment id is invalid, or if no fields to edit are provided.
+     */
     @Override
     public EditAssignmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -38,7 +45,7 @@ public class EditAssignmentCommandParser implements Parser<EditAssignmentCommand
         }
 
         AssignmentId assignmentId = ParserUtil.parseAssignmentId(idAndTuple[0]);
-        List<String> parts = parseTuple3AllowEmpty(idAndTuple[1]);
+        List<String> parts = parseTuple3AllowEmpty(idAndTuple[1], EditAssignmentCommand.MESSAGE_USAGE);
 
         EditAssignmentCommand.EditAssignmentDescriptor descriptor =
                 new EditAssignmentCommand.EditAssignmentDescriptor();

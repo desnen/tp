@@ -84,7 +84,7 @@ public class JsonAdaptedAssignment {
             throw new IllegalValueException(Group.MESSAGE_CONSTRAINTS);
         }
 
-        final Group modelGroup = new  Group(group);
+        final Group modelGroup = new Group(group);
 
         return new Assignment(modelAssignmentId, modelLabel, modelGroup, modelDueDate);
     }
