@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -152,7 +153,7 @@ public class AddCommandTest {
         return new Assignment(
                 new AssignmentId(id),
                 new Label(label),
-                group,
+                new Group(group),
                 new DueDate(dueDate)
         );
     }
@@ -314,6 +315,8 @@ public class AddCommandTest {
         public void setAssignment(Assignment target, Assignment editedAssignment) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
         public void addStudentToGroup(Group group, StudentId id) {
 
         }
