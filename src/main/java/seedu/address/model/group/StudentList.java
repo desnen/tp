@@ -13,7 +13,7 @@ import seedu.address.model.person.StudentId;
  * Stores a list of StudentIds that correspond to the Students in a particular Group.
  */
 public class StudentList {
-    private final ArrayList<StudentId> list;
+    public final ArrayList<StudentId> list;
 
     /**
      * Constructs an {@code StudentList}.
@@ -72,4 +72,27 @@ public class StudentList {
         }
         list.remove(id);
     }
+
+    @Override
+    public String toString() {
+        return list.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof StudentList)) {
+            return false;
+        }
+        StudentList otherList = (StudentList) other;
+        return list.equals(otherList.list);
+    }
+
+    @Override
+    public int hashCode() {
+        return list.hashCode();
+    }
+
 }

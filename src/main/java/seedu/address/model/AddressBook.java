@@ -194,6 +194,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         return !groups.validateAddGroup(group);
     }
 
+    /**
+     * Adds a student to a Group
+     * @param g Group to add student to
+     * @param id Student Id of the student
+     */
     public void addStudentToGroup(Group g, StudentId id) {
         groups.addStudentToGroup(g, id);
     }

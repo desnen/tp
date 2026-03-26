@@ -322,6 +322,7 @@ public class ModelManager implements Model {
                 .findFirst();
     }
 
+    //======================= Groups =============================
     @Override
     public void addStudentToGroup(Group g, StudentId id) {
         addressBook.addStudentToGroup(g, id);

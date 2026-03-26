@@ -16,7 +16,7 @@ public class PersonUtil {
                 + person.getName().fullName + "; "
                 + person.getPhone().value + "; "
                 + person.getEmail().value + "; "
-                + person.getGroup()
+                + person.getGroup().getGroupName()
                 + "}";
     }
 

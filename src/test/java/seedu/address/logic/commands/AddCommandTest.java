@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -29,6 +30,7 @@ import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.assignment.DueDate;
 import seedu.address.model.assignment.Label;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.exceptions.AlreadyInGroupException;
 import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.MilestoneRecord;
 import seedu.address.model.milestone.MilestoneStatus;
@@ -45,17 +47,17 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
-    //    @Test
-    //    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-    //        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-    //        Person validPerson = new PersonBuilder().build();
-    //
-    //        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
-    //
-    //        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
-    //                commandResult.getFeedbackToUser());
-    //        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-    //    }
+    @Test
+    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Person validPerson = new PersonBuilder().build();
+
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
@@ -318,21 +320,22 @@ public class AddCommandTest {
 
         @Override
         public void addStudentToGroup(Group group, StudentId id) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void removeStudentFromGroup(Group group, StudentId id) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void removeGroup(Group group) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
 
@@ -361,6 +364,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Group> groupsAdded = new ArrayList<>();
 
         @Override
         public boolean hasPerson(Person person) {
@@ -377,6 +381,27 @@ public class AddCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
+        }
+
+        @Override
+        public void addGroup(Group group) {
+            requireNonNull(group);
+            if (!groupsAdded.stream().anyMatch(group::isSameGroup)) {
+                groupsAdded.add(group);
+            }
+        }
+
+        @Override
+        public void addStudentToGroup(Group g, StudentId id) {
+            for (Group group : groupsAdded) {
+                try {
+                    if (g.getGroupName().equals(group.getGroupName())) {
+                        group.addStudent(id);
+                    }
+                } catch (AlreadyInGroupException e) {
+                    // do nothing
+                }
+            }
         }
     }
 

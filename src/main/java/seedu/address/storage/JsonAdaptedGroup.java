@@ -35,11 +35,11 @@ public class JsonAdaptedGroup {
      * Converts a given {@code Group} into this class for Jackson use.
      */
     public JsonAdaptedGroup(Group source) {
-        name = source.getGroupName().toString();
+        name = source.getGroupName().name;
         students = new ArrayList<>();
 
-        for (StudentId id : source.getStudentIds()) {
-            students.add(id.toString());
+        for (StudentId id : source.getStudentIds().list) {
+            students.add(id.getValue());
         }
     }
 
