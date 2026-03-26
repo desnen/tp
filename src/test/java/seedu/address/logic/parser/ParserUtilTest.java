@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -34,7 +35,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -97,20 +98,22 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseGroup((String) null));
     }
 
-    //    @Test
-    //    public void parseGroup_invalidValue_throwsParseException() {
-    //        assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_GROUP));
-    //    }
-
     @Test
-    public void parseGroup_validValueWithoutWhitespace_returnsGroup() {
-        assertEquals(VALID_GROUP, ParserUtil.parseGroup(VALID_GROUP));
+    public void parseGroup_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_GROUP));
     }
 
     @Test
-    public void parseGroup_validValueWithWhitespace_returnsTrimmedGroup() {
+    public void parseGroup_validValueWithoutWhitespace_returnsGroup() throws Exception {
+        Group expectedGroup = new Group(VALID_GROUP);
+        assertEquals(expectedGroup, ParserUtil.parseGroup(VALID_GROUP));
+    }
+
+    @Test
+    public void parseGroup_validValueWithWhitespace_returnsTrimmedGroup() throws Exception {
         String groupWithWhitespace = WHITESPACE + VALID_GROUP + WHITESPACE;
-        assertEquals(VALID_GROUP, ParserUtil.parseGroup(groupWithWhitespace));
+        Group expectedGroup = new Group(VALID_GROUP);
+        assertEquals(expectedGroup, ParserUtil.parseGroup(groupWithWhitespace));
     }
 
     @Test

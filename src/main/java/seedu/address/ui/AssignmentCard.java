@@ -34,7 +34,7 @@ public class AssignmentCard extends UiPart<Region> {
         this.assignment = assignment;
         id.setText(assignment.getAssignmentId().toString() + ". ");
         label.setText(assignment.getLabel().label);
-        group.setText("Group: " + assignment.getGroup());
+        group.setText("Group: " + assignment.getGroup().getGroupName());
         dueDate.setText("Due by: " + assignment.getDueDate().toString());
     }
 }

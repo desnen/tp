@@ -43,7 +43,7 @@ public class Messages {
                 .append("; Email: ")
                 .append(person.getEmail())
                 .append("; Group: ")
-                .append(person.getGroup());
+                .append(person.getGroup().getGroupName());
         return builder.toString();
     }
 

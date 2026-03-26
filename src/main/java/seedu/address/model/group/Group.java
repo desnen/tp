@@ -1,47 +1,71 @@
 package seedu.address.model.group;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.assignment.Label.VALIDATION_REGEX;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.group.exceptions.AlreadyInGroupException;
 import seedu.address.model.group.exceptions.NotInGroupException;
 import seedu.address.model.person.StudentId;
-
 /**
  * Object representing the group that a student belongs to.
  */
 public class Group {
-    private final GroupId groupId;
+    public static final String MESSAGE_CONSTRAINTS = "Group can take any values, and it should not be blank";
+
+    private final GroupName name;
     private final StudentList studentIds;
 
     /**
      * Constructs an {@code Group} with the given value.
      *
-     * @param id The assignment identifier string.
-     * @throws NullPointerException if {@code id} is null.
+     * @param name The assignment identifier string.
+     * @throws NullPointerException if {@code name} is null.
      */
-    public Group(int id) {
-        this.groupId = new GroupId(id);
+    public Group(String name) {
+        this.name = new GroupName(name);
         this.studentIds = new StudentList();
     }
 
     /**
-     * Returns the Integer value of this Group identifier.
+     * Constructs an {@code Group} with the given value.
      *
-     * @return The Group identifier as a Integer.
+     * @param name The assignment identifier string.
+     * @throws NullPointerException if {@code name} is null.
      */
-    public int getGroupId() {
-        return this.groupId.getGroupId();
+    public Group(GroupName name, StudentList students) {
+        this.name = name;
+        this.studentIds = students;
     }
 
     /**
-     * Returns the ArrayList of Students that correspond to the Students in the Group.
+     * Returns true if a given string is a valid group.
      *
-     * @return The ArrayList of Students as an ArrayList.
+     * @param test The string to validate.
+     * @return {@code true} if {@code test} is a valid group, {@code false} otherwise.
      */
-    public ArrayList<StudentId> getStudentIds() {
-        return studentIds.getStudentList();
+    public static boolean isValidGroup(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the GroupName of the group.
+     *
+     * @return The Group identifier.
+     */
+    public GroupName getGroupName() {
+        return this.name;
+    }
+
+    /**
+     * Returns the StudentIds that correspond to the Students in the Group.
+     *
+     * @return The ArrayList of Students as an StudentIds object.
+     */
+    public StudentList getStudentIds() {
+        return this.studentIds;
     }
 
     /**
@@ -66,5 +90,46 @@ public class Group {
     public void removeStudent(StudentId id) throws NotInGroupException {
         requireNonNull(id);
         studentIds.removeStudent(id);
+    }
+
+    /**
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.name.equals(name);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof Group)) {
+            return false;
+        }
+
+        Group otherGroup = (Group) other;
+        return name.equals(otherGroup.name)
+                && studentIds.equals(otherGroup.studentIds);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, studentIds);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("Group Name", name)
+                .add("Student Ids", studentIds)
+                .toString();
     }
 }
