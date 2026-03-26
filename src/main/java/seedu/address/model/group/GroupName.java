@@ -4,7 +4,7 @@ package seedu.address.model.group;
  * Value object representing the groupId of a particular Group.
  */
 public final class GroupName {
-    private final String name;
+    public final String name;
 
     /**
      * Constructs an {@code GroupName} with the given id.
@@ -16,13 +16,9 @@ public final class GroupName {
         this.name = name;
     }
 
-    /**
-     * Returns the String value of this Group identifier.
-     *
-     * @return The Group identifier as a String.
-     */
-    public String getGroupName() {
-        return this.name;
+    @Override
+    public String toString() {
+        return name;
     }
 
     @Override
@@ -38,5 +34,10 @@ public final class GroupName {
 
         GroupName otherGroup = (GroupName) other;
         return name.equals(otherGroup.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 }

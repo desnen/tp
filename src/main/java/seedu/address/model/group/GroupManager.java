@@ -14,30 +14,10 @@ public class GroupManager {
     private final ArrayList<Group> groups;
 
     /**
-     * Constructs a {@code GroupManager} with the given list of groups.
-     *
-     * @param groups The initial list of groups to manage.
-     */
-    public GroupManager(ArrayList<Group> groups) {
-        this.groups = groups;
-    }
-
-    /**
      * Constructs an empty {@code GroupManager}
      */
     public GroupManager() {
         this.groups = new ArrayList<>();
-    }
-
-    /**
-     * Initialises the group manager by loading groups from storage,
-     * or creating a new set of groups if no storage is found.
-     */
-    public void initGroupManager() {
-        /*  MUST run this on startup!!!
-            try to from storage, if no storage found, create groups
-            if storage found, load groups
-        */
     }
 
     /**

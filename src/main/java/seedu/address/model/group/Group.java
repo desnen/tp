@@ -3,12 +3,12 @@ package seedu.address.model.group;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.assignment.Label.VALIDATION_REGEX;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.group.exceptions.AlreadyInGroupException;
 import seedu.address.model.group.exceptions.NotInGroupException;
 import seedu.address.model.person.StudentId;
-
 /**
  * Object representing the group that a student belongs to.
  */
@@ -51,21 +51,21 @@ public class Group {
     }
 
     /**
-     * Returns the Integer value of this Group identifier.
+     * Returns the GroupName of the group.
      *
-     * @return The Group identifier as a Integer.
+     * @return The Group identifier.
      */
-    public String getGroupName() {
-        return this.name.getGroupName();
+    public GroupName getGroupName() {
+        return this.name;
     }
 
     /**
-     * Returns the ArrayList of Students that correspond to the Students in the Group.
+     * Returns the StudentIds that correspond to the Students in the Group.
      *
-     * @return The ArrayList of Students as an ArrayList.
+     * @return The ArrayList of Students as an StudentIds object.
      */
-    public ArrayList<StudentId> getStudentIds() {
-        return studentIds.getStudentList();
+    public StudentList getStudentIds() {
+        return this.studentIds;
     }
 
     /**
@@ -92,6 +92,19 @@ public class Group {
         studentIds.removeStudent(id);
     }
 
+    /**
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null
+                && otherGroup.name.equals(name);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -104,11 +117,19 @@ public class Group {
         }
 
         Group otherGroup = (Group) other;
-        return name.equals(otherGroup.name);
+        return name.equals(otherGroup.name)
+                && studentIds.equals(otherGroup.studentIds);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, studentIds);
     }
 
     @Override
     public String toString() {
-        return this.name.getGroupName();
+        return new ToStringBuilder(this)
+                .add("Group Name", name)
+                .add("Student Ids", studentIds)
+                .toString();
     }
 }
