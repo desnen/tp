@@ -62,4 +62,3 @@ public class PersonCard extends UiPart<Region> {
                 });
     }
 }
-

@@ -22,9 +22,9 @@ import seedu.address.model.tag.Tag;
 public class EditCommandParser implements Parser<EditCommand> {
 
     private static final Pattern STUDENT_EDIT_ARGS_FORMAT = Pattern.compile(
-            "^\\s*/students\\s+(?<studentId>\\S+)\\s*\\{\\s*(?<name>[^;]+"
-                    + "?)\\s*;\\s*(?<phone>[^;]+?)\\s*;\\s*(?<email>[^;]+?)\\s*;"
-                    + "\\s*(?<group>[^;]+?)\\s*\\}\\s*$"
+            "^\\s*/students\\s+(?<studentId>\\S+)\\s*\\{\\s*(?<name>[^;{}]*"
+                    + ")\\s*;\\s*(?<phone>[^;{}]*)\\s*;\\s*(?<email>[^;]*)\\s*;"
+                    + "\\s*(?<group>[^;]*)\\s*\\}\\s*$"
     );
 
 
@@ -47,10 +47,20 @@ public class EditCommandParser implements Parser<EditCommand> {
             Index index = ParserUtil.parseIndex(matcher.group("studentId"));
 
             EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-            editPersonDescriptor.setName(ParserUtil.parseName(matcher.group("name").trim()));
-            editPersonDescriptor.setPhone(ParserUtil.parsePhone(matcher.group("phone").trim()));
-            editPersonDescriptor.setEmail(ParserUtil.parseEmail(matcher.group("email").trim()));
-            editPersonDescriptor.setGroup(ParserUtil.parseGroup(matcher.group("group").trim()));
+            if (!matcher.group("name").isEmpty()) {
+                editPersonDescriptor.setName(ParserUtil.parseName(matcher.group("name").trim()));
+            }
+            if (!matcher.group("phone").isEmpty()) {
+                editPersonDescriptor.setPhone(ParserUtil.parsePhone(matcher.group("phone").trim()));
+            }
+            if (!matcher.group("email").isEmpty()) {
+                editPersonDescriptor.setEmail(ParserUtil.parseEmail(matcher.group("email").trim()));
+            }
+            if (!matcher.group("group").isEmpty()) {
+                String[] groupParts = matcher.group("group")
+                        .split("\\s*,\\s*");
+                editPersonDescriptor.setGroups(ParserUtil.parseGroups(groupParts));
+            }
 
             if (!editPersonDescriptor.isAnyFieldEdited()) {
                 throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
