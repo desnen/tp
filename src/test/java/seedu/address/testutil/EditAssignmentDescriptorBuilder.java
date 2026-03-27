@@ -42,7 +42,7 @@ public class EditAssignmentDescriptorBuilder {
     /**
      * Sets the {@code Group} of the {@code EditAssignmentDescriptor} that we are building.
      */
-    public EditAssignmentDescriptorBuilder withGroup (String group) {
+    public EditAssignmentDescriptorBuilder withGroup(String group) {
         descriptor.setGroup(new Group(group));
         return this;
     }

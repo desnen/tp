@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalAssignmentId.ASSIGNMENT_ID_SECOND_AS
 import static seedu.address.testutil.TypicalAssignments.getTypicalAssignmentBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.EditAssignmentCommand.EditAssignmentDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -40,7 +41,7 @@ public class EditAssignmentCommandTest {
                 descriptor);
 
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
-        Model  expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
         assertCommandSuccess(editAssignmentCommand, model, expectedMessage, expectedModel);
@@ -58,7 +59,7 @@ public class EditAssignmentCommandTest {
                 descriptor);
 
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
-        Model  expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
         assertCommandSuccess(editAssignmentCommand, model, expectedMessage, expectedModel);
@@ -74,7 +75,7 @@ public class EditAssignmentCommandTest {
                 descriptor);
 
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
-        Model  expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
         assertCommandSuccess(editAssignmentCommand, model, expectedMessage, expectedModel);
@@ -94,7 +95,7 @@ public class EditAssignmentCommandTest {
                 descriptor);
 
         String expectedMessage = String.format(EditAssignmentCommand.MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment);
-        Model  expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
         assertCommandSuccess(editAssignmentCommand, model, expectedMessage, expectedModel);;
