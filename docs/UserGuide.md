@@ -55,7 +55,7 @@ LeTutor is a **desktop app for managing students and assignments, optimized for 
 * LeTutor is controlled almost entirely through commands typed into the command box and confirmed with the Enter key.
 
 * Commands follow a consistent, user-friendly format so that once learned, they are easy to remember and reuse.
- 
+
 * Words in UPPER_CASE indicate parameters you must supply. For example, in add /students {<NAME>; <PHONE NO.>; <EMAIL>; <GROUP>}, you replace <NAME> with the student’s actual name.
 
 * Items followed by ... can be repeated any number of times, each item is separated by a , For example, in the <GROUP> field for students we can have G1, G2, G3 …
