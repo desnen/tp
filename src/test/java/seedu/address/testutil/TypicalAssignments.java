@@ -53,13 +53,13 @@ public class TypicalAssignments {
             .withGroup("Sec3C")
             .withDueDate("2026-03-15")
             .build();
-    
+
     public static final Assignment A_TEST = new AssignmentBuilder().withAssignmentId("A6").withLabel(VALID_LABEL_A_TEST)
             .withGroup(VALID_GROUP_A_TEST).withDueDate(VALID_DUEDATE_A_TEST).build();
-    
+
     public static final Assignment B_TEST = new AssignmentBuilder().withAssignmentId("A7").withLabel(VALID_LABEL_B_TEST)
             .withGroup(VALID_GROUP_B_TEST).withDueDate(VALID_DUEDATE_B_TEST).build();
-    
+
     private TypicalAssignments() {}
 
     public static List<Assignment> getTypicalAssignments() {

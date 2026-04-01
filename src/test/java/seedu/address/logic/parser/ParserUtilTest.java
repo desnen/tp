@@ -261,8 +261,8 @@ public class ParserUtilTest {
     @Test
     public void parseTuple3AllowEmpty_null_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TUPLE3_ERROR_MESSAGE);
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3AllowEmpty(null, TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3AllowEmpty(null, TUPLE3_ERROR_MESSAGE));
     }
 
     @Test
@@ -288,14 +288,14 @@ public class ParserUtilTest {
     public void parseTuple3AllowEmpty_invalidShape_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TUPLE3_ERROR_MESSAGE);
 
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3AllowEmpty("A-TEST; G1; 2026-04-20", TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3AllowEmpty("A-TEST; G1; 2026-04-20", TUPLE3_ERROR_MESSAGE));
 
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3AllowEmpty("{A-TEST; G1}", TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3AllowEmpty("{A-TEST; G1}", TUPLE3_ERROR_MESSAGE));
 
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3AllowEmpty("{A-TEST; G1; 2026-04-20; extra}", TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3AllowEmpty("{A-TEST; G1; 2026-04-20; extra}", TUPLE3_ERROR_MESSAGE));
     }
 
     @Test
@@ -308,13 +308,13 @@ public class ParserUtilTest {
     public void parseTuple3_emptyRequiredValues_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TUPLE3_ERROR_MESSAGE);
 
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3("{ ; G1; 2026-04-20}", TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3("{ ; G1; 2026-04-20}", TUPLE3_ERROR_MESSAGE));
 
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3("{A-TEST; ; 2026-04-20}", TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3("{A-TEST; ; 2026-04-20}", TUPLE3_ERROR_MESSAGE));
 
-        assertThrows(ParseException.class, expectedMessage,
-                () -> ParserUtil.parseTuple3("{A-TEST; G1; }", TUPLE3_ERROR_MESSAGE));
+        assertThrows(ParseException.class, expectedMessage, () ->
+                ParserUtil.parseTuple3("{A-TEST; G1; }", TUPLE3_ERROR_MESSAGE));
     }
 }

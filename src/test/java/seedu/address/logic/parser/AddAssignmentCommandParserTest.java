@@ -11,8 +11,6 @@ import seedu.address.logic.commands.AddAssignmentCommand;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.assignment.DueDate;
-import seedu.address.model.assignment.Label;
-import seedu.address.model.group.Group;
 import seedu.address.testutil.AssignmentBuilder;
 
 public class AddAssignmentCommandParserTest {
