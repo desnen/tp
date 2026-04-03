@@ -276,11 +276,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * Manages a significant number of students across 2 \- 3 groups
 * Manages student assignments and learning progress
-* Needs to assign student or teaching assistant roles to contacts
 * Needs quick access to summarised student information
-* Needs to keep track of student assignment information
-* Needs to record notes or observations for particular contacts
+* Needs to keep track of group assignment information
 * Needs to identify struggling students
+* Needs to keep track of students in groups
 * Prefers using a keyboard CLI over complex graphical interface
 
 **Value proposition**:
