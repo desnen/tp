@@ -1,6 +1,6 @@
 ---
   layout: default.md
-  title: "User Guide"
+    - title: "User Guide"
   pageNav: 3
 ---
 
@@ -82,6 +82,9 @@ Adds a student to the address book.
 Format: `add /students {<name>; <phone>; <email>; <group>}`
 
 * The groups field allows for multiple groups to be added. Each new group will have to be separated by a `,`.
+* Take note that the phone number inputted has to be valid with 8 numbers.
+* Ensure that your email has to include an @.
+* Make sure that your name, phone and emails don't include the `;` character.
 
 Examples: 
 * `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`
@@ -219,7 +222,7 @@ Format: `delete /students <studentId>`
 
 * Deletes the student at the specified `studentId`.
 
-Example: `delete /students 3`
+Example: `delete /students S3`
 
 ### Deleting an assignment : `delete /assignments`
 
