@@ -57,6 +57,7 @@ public class DeleteAssignmentCommand extends Command {
 
         Assignment assignmentToDelete = maybe.get();
         model.deleteAssignment(assignmentToDelete);
+        model.removeGroup(assignmentToDelete.getGroup());
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentId));
     }
 

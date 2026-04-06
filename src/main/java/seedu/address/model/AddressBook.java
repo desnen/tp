@@ -81,6 +81,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         setPersons(newData.getPersonList());
         setMilestoneStore(newData.getMilestoneStore());
         setAssignments(newData.getAssignmentList());
+        setGroups(newData.getGroups());
     }
 
     // ==================== person operations ====================
@@ -207,6 +208,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         groups.removeStudentFromGroup(g, id);
     }
 
+    /**
+     * Replaces the Groups in internal GroupManager to a new one
+     */
+    public void setGroups(List<Group> groups) {
+        this.groups.setGroups(groups);
+    }
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();

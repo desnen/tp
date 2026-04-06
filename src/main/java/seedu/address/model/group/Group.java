@@ -69,6 +69,15 @@ public class Group {
     }
 
     /**
+     * Checks if the StudentList ArrayList in Group is empty
+     *
+     * @return True is StudentList is empty and False if otherwise
+     */
+    public boolean isStudentListEmpty() {
+        return this.studentIds.getStudentList().isEmpty();
+    }
+
+    /**
      * Adds a student id to this group's list of Students.
      *
      * @param id The student identifier to add.

@@ -17,6 +17,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.group.Group;
+import seedu.address.model.group.GroupManager;
 import seedu.address.model.milestone.CompletedAt;
 import seedu.address.model.milestone.MilestoneRecord;
 import seedu.address.model.milestone.MilestoneResolver;
@@ -386,8 +387,4 @@ public class ModelManager implements Model {
         requireNonNull(g);
         addressBook.removeGroup(g);
     }
-
-
-
-
 }
