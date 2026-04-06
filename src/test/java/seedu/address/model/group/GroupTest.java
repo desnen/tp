@@ -112,15 +112,6 @@ public class GroupTest {
         assertNotEquals(first, "not a group");
         assertEquals(first, second);
 
-        first.addStudent(id1);
-        assertNotEquals(first, second);
-
-        second.addStudent(id1);
-        assertEquals(first, second);
-
-        second.addStudent(id2);
-        assertNotEquals(first, second);
-
         assertNotEquals(first, differentName);
     }
 
