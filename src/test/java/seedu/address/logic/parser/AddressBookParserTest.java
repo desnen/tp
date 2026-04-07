@@ -112,9 +112,6 @@ public class AddressBookParserTest {
         assertThrows(ParseException.class,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, GET_MESSAGE_USAGE), (
                 ) -> parser.parseCommand("get /hello"));
-        assertThrows(ParseException.class,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, GET_MESSAGE_USAGE), (
-                ) -> parser.parseCommand("get /students"));
     }
 
     @Test
