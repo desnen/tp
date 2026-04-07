@@ -29,8 +29,6 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_STUDENT_ID =
-            "StudentId must be in the format S followed by 1 to 4 digits (e.g., S1, S301, S9999).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -71,6 +69,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String address} into an {@code Address}.
+     */
+    public static Address parseAddress(String address) throws ParseException {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        if (!Address.isValidAddress(trimmedAddress)) {
+            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+        }
+        return new Address(trimmedAddress);
+    }
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -80,6 +90,30 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
     }
 
     /**
@@ -147,11 +181,9 @@ public class ParserUtil {
     public static StudentId parseStudentId(String studentId) throws ParseException {
         requireNonNull(studentId);
         String trimmedStudentId = studentId.trim();
-
-        if (!trimmedStudentId.matches("S\\d{1,4}")) {
-            throw new ParseException(MESSAGE_INVALID_STUDENT_ID);
+        if (!trimmedStudentId.matches("S[1-9]\\d*")) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-
         return new StudentId(trimmedStudentId);
     }
 
