@@ -18,9 +18,13 @@ public class DeleteAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + " /assignments: Deletes an assignment from the assignment library.\n"
-            + "Format: delete /assignments <assignmentId>\n"
-            + "Example: delete /assignments A301";
+            + ": Deletes a student or assignment.\n"
+            + "Use either:\n"
+            + "1. delete /students STUDENT_ID\n"
+            + "2. delete /assignments ASSIGNMENT_ID\n"
+            + "Examples:\n"
+            + "delete /students S1\n"
+            + "delete /assignments A1";
 
     public static final String MESSAGE_NOT_FOUND = "Assignment not found: %s";
 
