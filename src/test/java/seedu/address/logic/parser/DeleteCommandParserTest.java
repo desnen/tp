@@ -29,9 +29,19 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " /students a",
-                String.format(MESSAGE_INVALID_INDEX,
-                        DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, " /students a", MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_emptyArgs_throwsParseException() {
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidStudentIdFormat_throwsParseException() {
+        assertParseFailure(parser, " /students student1",
+                MESSAGE_INVALID_INDEX);
     }
 
     @Test
