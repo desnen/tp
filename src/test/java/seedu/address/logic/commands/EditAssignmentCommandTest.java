@@ -103,7 +103,7 @@ public class EditAssignmentCommandTest {
         Model expectedModel = new ModelManager(getTypicalAssignmentBook(), new UserPrefs());
         expectedModel.setAssignment(assignmentToEdit, editedAssignment);
 
-        assertCommandSuccess(editAssignmentCommand, model, expectedMessage, expectedModel);;
+        assertCommandSuccess(editAssignmentCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

@@ -48,7 +48,8 @@ public class DeleteCommandTest {
         int outOfBoundStudentId = Index.fromOneBased(model.getFilteredPersonList().size() + 1).getOneBased();
         DeleteCommand deleteCommand = new DeleteCommand(new StudentId("S" + outOfBoundStudentId));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model,
+                String.format(DeleteCommand.MESSAGE_STUDENT_NOT_FOUND, "S" + outOfBoundStudentId));
     }
 
     @Test
@@ -79,7 +80,8 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundStudentId);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model,
+                String.format(DeleteCommand.MESSAGE_STUDENT_NOT_FOUND, outOfBoundStudentId));
     }
 
     @Test
