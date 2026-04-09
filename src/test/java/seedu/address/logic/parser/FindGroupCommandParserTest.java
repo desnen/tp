@@ -20,6 +20,12 @@ public class FindGroupCommandParserTest {
     }
 
     @Test
+    public void parse_invalidCommandWord_throwsParseException() {
+        assertParseFailure(parser, "/groupyy",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindGroupCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindGroupCommand expectedFindCommand =
