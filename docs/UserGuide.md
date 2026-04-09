@@ -237,6 +237,25 @@ Examples:
 
 ---
 
+### Locating students and assignments by group: `find /groups`
+
+Finds all students and assignments that belong to the specified group.
+
+Format: `find /groups <groupName>`
+
+* Filters the student list to show only students in the specified group.
+* Filters the assignment list to show only assignments tagged to the specified group.
+* The group name should match an existing group name exactly.
+* If no matching group is found, no students and no assignments will be shown.
+
+Example:
+
+* `find /groups Science`
+
+Expected result message format:
+
+* `X persons listed and Y assignments listed for Group "Science"`
+
 ### Editing a student: `edit /students`
 
 Edits the details of a student in the address book.
@@ -377,6 +396,10 @@ Example: `get /assignments A2`
 **Find student**  
 `find /students <keywords>`  
 Example: `find /students alex david`
+
+**Find group**  
+`find /groups <groupName>`  
+Example: `find /groups Science`
 
 **Edit student**  
 `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`  
