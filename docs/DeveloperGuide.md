@@ -1,9 +1,3 @@
----
-  layout: default.md
-  - title: Developer Guide
-  pageNav: 3
----
-
 # LeTutor Developer Guide
 
 <!-- * Table of Contents -->
