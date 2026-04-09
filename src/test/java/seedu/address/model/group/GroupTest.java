@@ -2,6 +2,7 @@ package seedu.address.model.group;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.group.exceptions.AlreadyInGroupException;
 import seedu.address.model.group.exceptions.NotInGroupException;
 import seedu.address.model.person.StudentId;
@@ -21,6 +23,7 @@ public class GroupTest {
 
         assertEquals(new GroupName("Tutorial-1"), group.getGroupName());
         assertTrue(group.getStudentIds().getStudentList().isEmpty());
+        assertTrue(group.getAssignmentIds().getAssignmentList().isEmpty());
     }
 
     @Test
@@ -86,6 +89,79 @@ public class GroupTest {
     }
 
     @Test
+    public void isStudentListEmpty_tracksStudentMembershipCorrectly() throws Exception {
+        StudentId id1 = StudentIdTestUtil.studentId(1);
+        Group group = new Group("Tutorial-1");
+
+        assertTrue(group.isStudentListEmpty());
+        group.addStudent(id1);
+        assertFalse(group.isStudentListEmpty());
+        group.removeStudent(id1);
+        assertTrue(group.isStudentListEmpty());
+    }
+
+    @Test
+    public void addAssignment_null_throwsNullPointerException() {
+        Group group = new Group("Tutorial-1");
+        assertThrows(NullPointerException.class, () -> group.addAssignment(null));
+    }
+
+    @Test
+    public void addAssignment_newAssignment_success() {
+        AssignmentId id1 = new AssignmentId("A1");
+        Group group = new Group("Tutorial-1");
+
+        assertDoesNotThrow(() -> group.addAssignment(id1));
+        assertEquals(1, group.getAssignmentIds().getAssignmentList().size());
+        assertTrue(group.getAssignmentIds().getAssignmentList().contains(id1));
+    }
+
+    @Test
+    public void addAssignment_duplicateAssignment_throwsAlreadyInGroupException() throws Exception {
+        AssignmentId id1 = new AssignmentId("A1");
+        Group group = new Group("Tutorial-1");
+        group.addAssignment(id1);
+
+        assertThrows(AlreadyInGroupException.class, () -> group.addAssignment(id1));
+    }
+
+    @Test
+    public void removeAssignment_null_throwsNullPointerException() {
+        Group group = new Group("Tutorial-1");
+        assertThrows(NullPointerException.class, () -> group.removeAssignment(null));
+    }
+
+    @Test
+    public void removeAssignment_missingAssignment_throwsNotInGroupException() {
+        AssignmentId id1 = new AssignmentId("A1");
+        Group group = new Group("Tutorial-1");
+
+        assertThrows(NotInGroupException.class, () -> group.removeAssignment(id1));
+    }
+
+    @Test
+    public void removeAssignment_existingAssignment_success() throws Exception {
+        AssignmentId id1 = new AssignmentId("A1");
+        Group group = new Group("Tutorial-1");
+        group.addAssignment(id1);
+
+        assertDoesNotThrow(() -> group.removeAssignment(id1));
+        assertTrue(group.getAssignmentIds().getAssignmentList().isEmpty());
+    }
+
+    @Test
+    public void isAssignmentListEmpty_tracksAssignmentMembershipCorrectly() throws Exception {
+        AssignmentId id1 = new AssignmentId("A1");
+        Group group = new Group("Tutorial-1");
+
+        assertTrue(group.isAssignmentListEmpty());
+        group.addAssignment(id1);
+        assertFalse(group.isAssignmentListEmpty());
+        group.removeAssignment(id1);
+        assertTrue(group.isAssignmentListEmpty());
+    }
+
+    @Test
     public void isSameGroup_success() throws Exception {
         Group group = new Group("Tutorial-1");
         Group sameNameDifferentStudents = new Group("Tutorial-1");
@@ -101,10 +177,7 @@ public class GroupTest {
     }
 
     @Test
-    public void equals_success() throws Exception {
-        StudentId id1 = StudentIdTestUtil.studentId(1);
-        StudentId id2 = StudentIdTestUtil.studentId(2);
-
+    public void equals_success() {
         Group first = new Group("Tutorial-1");
         Group second = new Group("Tutorial-1");
         Group differentName = new Group("Tutorial-2");
@@ -113,7 +186,6 @@ public class GroupTest {
         assertNotEquals(first, null);
         assertNotEquals(first, "not a group");
         assertEquals(first, second);
-
         assertNotEquals(first, differentName);
     }
 
@@ -133,8 +205,10 @@ public class GroupTest {
     @Test
     public void toString_containsImportantFields() throws Exception {
         StudentId id1 = StudentIdTestUtil.studentId(1);
+        AssignmentId a1 = new AssignmentId("A1");
         Group group = new Group("Tutorial-1");
         group.addStudent(id1);
+        group.addAssignment(a1);
 
         String output = group.toString();
 
@@ -142,5 +216,7 @@ public class GroupTest {
         assertTrue(output.contains("Tutorial-1"));
         assertTrue(output.contains("Student Ids"));
         assertTrue(output.contains(group.getStudentIds().toString()));
+        assertTrue(output.contains("Assignment Ids"));
+        assertTrue(output.contains(group.getAssignmentIds().toString()));
     }
 }
