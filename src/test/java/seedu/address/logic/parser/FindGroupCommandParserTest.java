@@ -22,7 +22,7 @@ public class FindGroupCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindGroupCommand expectedFindCommand =  
+        FindGroupCommand expectedFindCommand =
                 new FindGroupCommand(new GroupName("Sec3A"));
         assertParseSuccess(parser, " /groups Sec3A",
                 expectedFindCommand);
