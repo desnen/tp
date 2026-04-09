@@ -41,7 +41,9 @@ public class AssignmentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AssignmentCard(assg, getIndex() + 1).getRoot());
+                AssignmentCard assignmentCard = new AssignmentCard(assg, getIndex() + 1);
+                assignmentCard.getRoot().prefWidthProperty().bind(assignmentListView.widthProperty().subtract(18));
+                setGraphic(assignmentCard.getRoot());
             }
         }
     }
