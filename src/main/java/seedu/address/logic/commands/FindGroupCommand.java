@@ -9,7 +9,7 @@ import seedu.address.model.group.GroupName;
 
 /**
  * Finds and lists all persons and assignments in address book whose name matches the group name given.
- * Keyword matching is case insensitive.
+ * Keyword matching is case sensitive.
  */
 public class FindGroupCommand extends Command {
 
