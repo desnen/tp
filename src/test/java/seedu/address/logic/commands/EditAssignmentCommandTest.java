@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -173,5 +174,34 @@ public class EditAssignmentCommandTest {
 
         // different values -> returns false
         assertFalse(firstCommand.equals(secondCommand));
+    }
+
+    @Test
+    public void toStringMethod() {
+        EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder()
+                .withLabel("A-Edited")
+                .withGroup("Sec3A")
+                .withDueDate("2026-05-01")
+                .build();
+        EditAssignmentCommand editAssignmentCommand = new EditAssignmentCommand(ASSIGNMENT_ID_FIRST_ASSIGNMENT,
+                descriptor);
+
+        String expected = EditAssignmentCommand.class.getCanonicalName() + "{assignmentId="
+                + ASSIGNMENT_ID_FIRST_ASSIGNMENT + ", editAssignmentDescriptor=" + descriptor + "}";
+        assertEquals(expected, editAssignmentCommand.toString());
+    }
+
+    @Test
+    public void editAssignmentDescriptor_toStringMethod() {
+        EditAssignmentDescriptor descriptor = new EditAssignmentDescriptorBuilder()
+                .withLabel("A-Edited")
+                .withGroup("Sec3A")
+                .withDueDate("2026-05-01")
+                .build();
+
+        String expected = EditAssignmentCommand.EditAssignmentDescriptor.class.getCanonicalName()
+                + "{label=A-Edited, group=[seedu.address.model.group.Group{Group Name=Sec3A, Student Ids=[], "
+                + "Assignment Ids=[]}], dueDate=May 1 2026}";
+        assertEquals(expected, descriptor.toString());
     }
 }

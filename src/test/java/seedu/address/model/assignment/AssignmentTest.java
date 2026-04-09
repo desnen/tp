@@ -81,6 +81,24 @@ public class AssignmentTest {
     }
 
     @Test
+    public void hashCode_sameState_sameHashCode() {
+        Assignment assignmentCopy = new AssignmentBuilder(A_TEST).build();
+        assertEquals(A_TEST.hashCode(), assignmentCopy.hashCode());
+
+        Assignment differentId = new AssignmentBuilder(A_TEST).withAssignmentId("A88").build();
+        assertFalse(A_TEST.hashCode() == differentId.hashCode());
+
+        Assignment differentLabel = new AssignmentBuilder(A_TEST).withLabel(VALID_LABEL_B_TEST).build();
+        assertFalse(A_TEST.hashCode() == differentLabel.hashCode());
+
+        Assignment differentGroup = new AssignmentBuilder(A_TEST).withGroups(VALID_GROUP_B_TEST).build();
+        assertFalse(A_TEST.hashCode() == differentGroup.hashCode());
+
+        Assignment differentDueDate = new AssignmentBuilder(A_TEST).withDueDate(VALID_DUEDATE_B_TEST).build();
+        assertFalse(A_TEST.hashCode() == differentDueDate.hashCode());
+    }
+
+    @Test
     public void toStringMethod() {
         String expected = Assignment.class.getCanonicalName()
                 + "{assignmentId=" + A_TEST.getAssignmentId()

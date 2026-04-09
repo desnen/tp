@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.address.model.assignment.AssignmentId;
 import seedu.address.model.group.exceptions.AlreadyInGroupException;
+import seedu.address.model.group.exceptions.NotInGroupException;
 import seedu.address.model.person.StudentId;
 
 /**
@@ -105,7 +106,7 @@ public class GroupManager {
                 if (g.getGroupName().equals(group.getGroupName())) {
                     group.removeStudent(id);
                 }
-            } catch (AlreadyInGroupException e) {
+            } catch (NotInGroupException e) {
                 //do nothing
             }
         }
@@ -141,7 +142,7 @@ public class GroupManager {
                 if (g.getGroupName().equals(group.getGroupName())) {
                     group.removeAssignment(id);
                 }
-            } catch (AlreadyInGroupException e) {
+            } catch (NotInGroupException e) {
                 //do nothing
             }
         }
