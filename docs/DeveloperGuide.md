@@ -258,27 +258,19 @@ All-in-one student management system tailored for tutors and teaching assistants
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | Account Owner | select my role (Tutor/Teaching Assistant) | only see features relevant to my responsibilities |
-| `* * *`  | Account Owner | assign roles (Tutor/Teaching Assistant) to each contact | can organise contacts and enable the correct role-specific workflows |
-| `* * *`  | Account Owner | add a profile with contact details | can keep all contacts in one place |
-| `* * *`  | Account Owner | search and open a profile by name | can access the profile's information quickly during teaching |
-| `* * *`  | Account Owner | edit a profile with contact details | can change profile contact information efficiently |
-| `* * *`  | Account Owner | delete a profile with contact details | can remove redundant contacts |
-| `* * *`  | Account Owner | tag Students (e.g., “needs follow-up”) | can filter and manage groups efficiently |
-| `* * *`  | Account Owner | add a lesson observation note to a Student profile | can document learning behaviour and issues on the fly |
-| `* * *`  | Account Owner | edit an existing lesson observation note on a Student profile | can update records at any time |
-| `* * *`  | Account Owner | delete an existing lesson observation note on a Student profile | can remove redundant records at any time |
-| `* * *`  | Tutor | add Student assignments to particular profiles | can keep track of assignments efficiently |
-| `* * *`  | Tutor | edit Student assignments | can change assignments when the need arises |
-| `* * *`  | Tutor | delete Student assignments | remove redundant assignments when the need arises |
-| `* * *`  | Tutor | record Student assignment scores on Students' profiles | can monitor academic performance over time |
-| `* *`  | Tutor | view a list of Student profiles with assignment submission status | can can identify missing submissions at a glance |
-| `*`  | Tutor | view the observation histories of Teaching Assistants | can evaluate the performance of Teaching Assistants |
-| `* * *`  | Teaching Assistant | update a Student's learning progress (0-100%) | can track lesson coverage and growth over time |
-| `* *`  | Teaching Assistant | attach a "star" to a Student's profile | can quickly identify students who need help and attention |
-| `* *`  | Teaching Assistant | assign a buddy to a Student's profile | can facilitate peer support quickly |
+| Priority | As a …​                                    | I want to …​                                                     | So that I can…​                                                      |
+|----------|--------------------------------------------|------------------------------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | Account Owner | assign roles (Tutor/Teaching Assistant) to each contact          | can organise contacts and enable the correct role-specific workflows |
+| `* * *`  | Account Owner | add a profile with contact details                               | can keep all contacts in one place                                   |
+| `* * *`  | Account Owner | search and open a profile by name                                | can access the profile's information quickly during teaching         |
+| `* * *`  | Account Owner | edit a profile with contact details                              | can change profile contact information efficiently                   |
+| `* * *`  | Account Owner | add students to groups                                           | can assign the same assignment to a group of students efficiently    |
+| `* * *`  | Account Owner | delete a profile with contact details                            | can remove redundant contacts                                        |
+| `* * *`  | Tutor | add Student assignments to particular groups                     | can keep track of assignments efficiently                            |
+| `* * *`  | Tutor | edit Student assignments                                         | can change assignments when the need arises                          |
+| `* * *`  | Tutor | delete Student assignments                                       | remove redundant assignments when the need arises                    |
+| `* *`  | Tutor | view a list of Student profiles with assignment submission status | can identify missing submissions at a glance                         |
+| `* *`  | Tutor | view students and assignment in a group                          | can keep track of groups at a glance                                 |
 
 ## Use cases
 
@@ -798,11 +790,3 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `list` followed by `get /assignments`
        Expected: The full student list and full assignment list are shown again.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
