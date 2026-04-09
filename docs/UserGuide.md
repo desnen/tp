@@ -24,26 +24,26 @@ LeTutor is a **desktop app for managing students, assignments, and milestone pro
    followed by
    `java -jar letutor.jar`
 7. After a few seconds, the main window will appear.
-8. Type a command in the command box and press <kbd>Enter</kbd> to execute it.  
+8. Type a command in the command box and press <kbd>Enter</kbd> to execute it.
    For example, typing `help` and pressing <kbd>Enter</kbd> will open the help window.
    Some example commands you can try:
 
-* `list`  
+* `list`
   Lists all students.
 
-* `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`  
+* `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`
   Adds a student named `John Doe`.
 
-* `get /assignments`  
+* `get /assignments`
   Lists all assignments.
 
-* `delete /students S1`  
+* `delete /students S1`
   Deletes the student with ID `S1`.
 
-* `clear`  
+* `clear`
   Deletes all students and assignments.
 
-* `exit`  
+* `exit`
   Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
@@ -100,7 +100,7 @@ Adds an assignment to the address book.
 Format: `add /assignments {<label>; <groups>; <dueDate>}`
 
 * The groups field supports **multiple groups** separated by commas.
-* The `dueDate` must be in the format `YYYY-MM-DD`.  
+* The `dueDate` must be in the format `YYYY-MM-DD`.
   Example: `2026-03-20` for 20 March 2026.
 
 Examples:
@@ -218,14 +218,14 @@ Finds students whose names contain any of the given keywords.
 
 Format: `find /students <keywords>`
 
-* The search is case-insensitive.  
+* The search is case-insensitive.
   e.g. `hans` will match `Hans`
-* The order of the keywords does not matter.  
+* The order of the keywords does not matter.
   e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
-* Only full words will be matched.  
+* Only full words will be matched.
   e.g. `Han` will not match `Hans`
-* Students matching at least one keyword will be returned (i.e. `OR` search).  
+* Students matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -262,7 +262,7 @@ Format: `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`
 
 * Edits the student with the specified `studentId`.
 * You may leave fields empty if you do not wish to edit them.
-* To edit only the name, you can use:  
+* To edit only the name, you can use:
   `edit /students S1 {John; ; ;}`
 * The groups field follows the same format as adding a student, using commas to separate multiple groups.
 
@@ -281,7 +281,7 @@ Format: `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`
 
 * Edits the assignment with the specified `assignmentId`.
 * You may leave fields empty if you do not wish to edit them.
-* To edit only the label, you can use:  
+* To edit only the label, you can use:
   `edit /assignments A1 {Quiz 2; ; }`
 * The groups field supports multiple groups separated by commas.
 
@@ -358,74 +358,74 @@ Certain edits can also cause LeTutor to behave in unexpected ways, such as when 
 
 ## FAQ
 
-**Q:** How do I transfer my data to another computer?  
+**Q:** How do I transfer my data to another computer?
 **A:** Install the app on the other computer and overwrite the empty data file it creates with the data file from your previous LeTutor home folder.
 
 * * *
 
 ## Command summary
 
-**Add student**  
-`add /students {<name>; <phone>; <email>; <groups>}`  
+**Add student**
+`add /students {<name>; <phone>; <email>; <groups>}`
 Example: `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`
 
-**Add assignment**  
-`add /assignments {<label>; <groups>; <dueDate>}`  
+**Add assignment**
+`add /assignments {<label>; <groups>; <dueDate>}`
 Example: `add /assignments {Math; Sec3A, Sec3B; 2026-03-20}`
 
-**List all students**  
+**List all students**
 `list`
 
-**List all assignments**  
+**List all assignments**
 `get /assignments`
 
-**Get student**  
-`get /students <studentId>`  
+**Get student**
+`get /students <studentId>`
 Example: `get /students S3`
 
-**Get student milestones**  
-`get /students <studentId> /milestones`  
+**Get student milestones**
+`get /students <studentId> /milestones`
 Example: `get /students S1 /milestones`
 
-**Get assignment**  
-`get /assignments <assignmentId>`  
+**Get assignment**
+`get /assignments <assignmentId>`
 Example: `get /assignments A2`
 
-**Find student**  
-`find /students <keywords>`  
+**Find student**
+`find /students <keywords>`
 Example: `find /students alex david`
 
-**Find group**  
-`find /groups <groupName>`  
+**Find group**
+`find /groups <groupName>`
 Example: `find /groups Science`
 
-**Edit student**  
-`edit /students <studentId> {<name>; <phone>; <email>; <groups>}`  
+**Edit student**
+`edit /students <studentId> {<name>; <phone>; <email>; <groups>}`
 Example: `edit /students S1 {John Doe; 98765432; johnd@mail.com; Sec3B}`
 
-**Edit assignment**  
-`edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`  
+**Edit assignment**
+`edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`
 Example: `edit /assignments A1 {Quiz 2; Sec3A, Sec3B; 2026-04-01}`
 
-**Set milestone**  
-`set /students <studentId> /milestones <assignmentId> <status> [completedAt]`  
+**Set milestone**
+`set /students <studentId> /milestones <assignmentId> <status> [completedAt]`
 Examples:
 * `set /students S1 /milestones A1 NOT_STARTED`
 * `set /students S1 /milestones A1 COMPLETED 2026-03-30T1200H`
 
-**Delete student**  
-`delete /students <studentId>`  
+**Delete student**
+`delete /students <studentId>`
 Example: `delete /students S3`
 
-**Delete assignment**  
-`delete /assignments <assignmentId>`  
+**Delete assignment**
+`delete /assignments <assignmentId>`
 Example: `delete /assignments A2`
 
-**Clear**  
+**Clear**
 `clear`
 
-**Help**  
+**Help**
 `help`
 
-**Exit**  
+**Exit**
 `exit`
