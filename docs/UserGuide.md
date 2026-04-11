@@ -1,3 +1,9 @@
+---
+layout: default.md
+title: "User Guide"
+pageNav: 3
+---
+
 # LeTutor User Guide
 
 ## Who is this guide for?
