@@ -166,5 +166,46 @@ h3,
 h4,
 h5,
 h6 {
-  color: #e46c0a;
+    color: #3366FF;
+}
+
+// User Guide
+
+blockquote.tip {
+  border-left: 5px solid #28a745;
+  background-color: #188131;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+blockquote.note {
+  border-left: 5px solid #007bff;
+  background-color: #066ad3;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+blockquote.warning {
+  border-left: 5px solid #ffc107;
+  background-color: #2244aa;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+blockquote.caution {
+  border-left: 5px solid #ffc107;
+  background-color: #d1202f;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: #2a4954;
+  margin: 20px 0;
 }
