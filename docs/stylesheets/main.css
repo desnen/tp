@@ -180,24 +180,21 @@ blockquote.tip {
 }
 
 blockquote.note {
-  border-left: 5px solid #007bff;
-  background-color: #066ad3;
+  border-left: 5px solid #066ad3;
   padding: 12px 16px;
   border-radius: 6px;
   margin: 20px 0;
 }
 
 blockquote.warning {
-  border-left: 5px solid #ffc107;
-  background-color: #2244aa;
+  border-left: 5px solid #2244aa;
   padding: 12px 16px;
   border-radius: 6px;
   margin: 20px 0;
 }
 
 blockquote.caution {
-  border-left: 5px solid #ffc107;
-  background-color: #d1202f;
+  border-left: 5px solid #d1202f;
   padding: 12px 16px;
   border-radius: 6px;
   margin: 20px 0;
@@ -206,6 +203,6 @@ blockquote.caution {
 hr {
   border: none;
   height: 2px;
-  background-color: #2a4954;
+  background-color: #ffffff;
   margin: 20px 0;
 }
