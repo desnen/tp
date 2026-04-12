@@ -224,6 +224,10 @@ Examples:
 > Use consistent group names and capitalization across students and assignments. For example, avoid mixing `Sec3A`, `sec3a`, and `SEC3A` as these will be interpreted as **different groups**.
 {: .tip}
 
+> **Note:**
+> Each student must have a unique phone number **and** a unique email address. Students are allowed to have the same name as long as both their phone and email are unique.
+{: .note}
+
 **Expected output:** The student appears in the list and a confirmation message is shown.
 
 ![Add student result](images/add-student.png)
