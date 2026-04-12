@@ -509,7 +509,7 @@ Preconditions: Tutor is signed in as Tutor, Students and predefined milestones e
 
 1. Tutor opens the student management or progress overview page.
 2. Tutor views milestone statuses across multiple students.
-3. System highlights students with overdue milestone bubbles.
+3. Tutor sees students with overdue milestone status.
 4. Tutor identifies which students are falling behind.
    Use case ends.
 
