@@ -91,14 +91,11 @@ java -jar letutor.jar
 
 8. Type a command into the command box and press <kbd>Enter</kbd> to run it.
 
-> **Tip:** If you ever feel lost after filtering results, use `list` to return to the full student and assignment list.
-> {: .tip}
-
 ---
 
 ## Key Concepts
 
-Before using LeTutor, it helps to understand four core ideas:
+Here are some of the core concepts that LeTutor uses:
 
 ### Student
 
@@ -181,6 +178,7 @@ View-only computed status:
 Shows a message explaining how to access the help page.
 
 Format: `help`
+{: .format}
 
 **Expected output:** A help window appears or help information is shown.
 
@@ -192,20 +190,21 @@ Format: `help`
 
 Adds a student to LeTutor.
 
-Format: `add /students {<name>; <phone>; <email>; <groups>}`
+Format: `add /students {NAME; PHONE; EMAIL; GROUPS}`
+{: .format}
 
 **Parameter reference:**
 
-| Field      | Description                             |
-| ---------- | --------------------------------------- |
-| `<name>`   | Student's full name                     |
-| `<phone>`  | 8-digit phone number                    |
-| `<email>`  | Student's email address                 |
-| `<groups>` | One or more groups, separated by commas |
+| Field    | Description                             |
+|----------|-----------------------------------------|
+| `NAME`   | Student's full name                     |
+| `PHONE`  | Student's phone number                  |
+| `EMAIL`  | Student's email address                 |
+| `GROUPS` | One or more groups, separated by commas |
 
 Rules:
 
-* The phone number must contain 8 digits.
+* The phone number must be within 3-15 digits.
 * The email should contain `@`.
 * The name, phone, and email fields must not contain `;`.
 * The groups field supports multiple groups separated by commas.
@@ -229,13 +228,15 @@ Examples:
 
 Edits the details of an existing student.
 
-Format: `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`
+Format: `edit /students STUDENT_ID {NAME; PHONE; EMAIL; GROUPS}`
+{: .format}
 
 Rules:
 
 * The `studentId` identifies which student to edit.
 * You may leave fields empty if you do not want to change them.
-* The groups field follows the same format as `add /students`.
+* Semicolons `;` must still be typed to indicate the fields.
+* TThe `GROUPS` field follow the same rules and formatting as the one in `add /students`.
 
 Examples:
 
@@ -256,7 +257,8 @@ Examples:
 
 Deletes a student from LeTutor.
 
-Format: `delete /students <studentId>`
+Format: `delete /students STUDENT_ID`
+{: .format}
 
 Example:
 
@@ -276,16 +278,21 @@ Example:
 
 Adds an assignment to LeTutor.
 
-Format: `add /assignments {<label>; <groups>; <dueDate>}`
+Format: `add /assignments {LABEL; GROUPS; DUE_DATE}`
 {: .format}
 
 **Parameter reference:**
 
-| Field       | Description                             |
-| ----------- | --------------------------------------- |
-| `<label>`   | Assignment name or label                |
-| `<groups>`  | One or more groups, separated by commas |
-| `<dueDate>` | Due date in `YYYY-MM-DD` format         |
+| Field      | Description                             |
+|------------| --------------------------------------- |
+| `LABEL`    | Assignment name or label                |
+| `GROUPS`   | One or more groups, separated by commas |
+| `DUE_DATE` | Due date in `YYYY-MM-DD` format         |
+
+Rules:
+* Assignments can also belong to more than one group.
+* The `GROUPS` field follow the same rules and formatting as the one in `add /students`.
+* The `DUE_DATE` field must follow the specified format strictly.
 
 Examples:
 
@@ -295,6 +302,10 @@ Examples:
 > **Note:**
 > An assignment can belong to more than one group.
 {: .note}
+
+> **Tip:**
+> Use consistent group names across students and assignments as GROUPS are case-sensitive.
+{: .tip}
 
 **Expected output:** The assignment appears in the assignment list and a confirmation message is shown.
 
@@ -306,11 +317,12 @@ Examples:
 
 Edits the details of an existing assignment.
 
-Format: `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`
+Format: `edit /assignments ASSIGNMENT_ID {LABEL; GROUPS; DUE_DATE}`
+{: .format}
 
 Rules:
 
-* The `assignmentId` identifies which assignment to edit.
+* The `ASSIGNMENT_ID` identifies which assignment to edit.
 * You may leave fields empty if you do not want to change them.
 * The groups field supports multiple groups separated by commas.
 
@@ -330,7 +342,8 @@ Examples:
 
 Deletes an assignment from LeTutor.
 
-Format: `delete /assignments <assignmentId>`
+Format: `delete /assignments ASSIGNMENT_ID`
+{: .format}
 
 Example:
 
@@ -351,6 +364,7 @@ Example:
 Shows all students and assignments currently in LeTutor.
 
 Format: `list`
+{: .format}
 
 > **Tip:**
 > Run `list` after using a find or group filter if you want to return to the full student list & full assignment list.
@@ -365,6 +379,7 @@ Format: `list`
 Shows all students currently in LeTutor.
 
 Format: `get /students`
+{: .format}
 
 **Expected output:** The student list resets to show all students.
 
@@ -375,18 +390,20 @@ Format: `get /students`
 Shows all assignments currently in LeTutor.
 
 Format: `get /assignments`
+{: .format}
 
 **Expected output:** The assignment list shows all assignments.
 
 ---
 
-### Viewing a student's details : `get /students <studentId>`
+### Viewing a student's details : `get /students STUDENT_ID`
 
 Shows the details of a specific student.
 
-Format: `get /students <studentId>`
+Format: `get /students STUDENT_ID`
+{: .format}
 
-* The `studentId` is automatically generated.
+* `STUDENT_ID` is automatically generated.
 * Student IDs are shown in the format `S1`, `S2`, `S3`, ...
 
 Example:
@@ -399,15 +416,16 @@ Example:
 
 ---
 
-### Viewing a specific assignment : `get /assignments <assignmentId>`
+### Viewing a specific assignment : `get /assignments ASSIGNMENT_ID`
 
 Shows the selected assignment in the app.
 
-Format: `get /assignments <assignmentId>`
+Format: `get /assignments ASSIGNMENT_ID`
+{: .format}
 
 Rules:
 
-* Assignment IDs are automatically generated.
+* `ASSIGNMENT_ID` are automatically generated.
 * Assignment IDs are shown in the format `A1`, `A2`, `A3`, ...
 
 Example:
@@ -422,7 +440,8 @@ Example:
 
 Shows the milestone progress of a student.
 
-Format: `get /students <studentId> /milestones`
+Format: `get /students STUDENT_ID /milestones`
+{: .format}
 
 Rules:
 
@@ -456,18 +475,27 @@ Example milestone output:
 
 Sets the milestone status of one assignment for one student.
 
-Format: `set /students <studentId> /milestones <assignmentId> <status> [completedAt]`
+Format: `set /students STUDENT_ID /milestones ASSIGNMENT_ID STATUS [COMPLETED_AT]`
+{: .format}
+
+**Parameter reference:**
+
+| Field           | Description                                                                            |
+|-----------------|----------------------------------------------------------------------------------------|
+| `STUDENT_ID`    | ID given to the student shown in the Student panel   .                                 |
+| `ASSIGNMENT_ID` | ID given to the assignment shown in the Assignment panel.                              |
+| `STATUS`        | Completion status of the assignment. Consists of `NOT_STARTED`, `COMPLETED`, `OVERDUE` |
+| `COMPLETED_AT`   | Date field that is required depending on the value of `STATUS`.                    |
+
 
 Rules:
-
-* `studentId` values look like `S1`, `S2`, `S3`, ...
-* `assignmentId` values look like `A1`, `A2`, `A3`, ...
+* `STUDENT_ID` values look like `S1`, `S2`, `S3`, ...
+* `ASSIGNMENT_ID` values look like `A1`, `A2`, `A3`, ...
 * Only the following stored statuses are allowed:
-
    * `NOT_STARTED`
    * `COMPLETED`
-* If the status is `NOT_STARTED`, do **not** provide `completedAt`.
-* If the status is `COMPLETED`, you **must** provide `completedAt`.
+* If the status is `NOT_STARTED`, do **not** provide `COMPLETED_AT`.
+* If the status is `COMPLETED`, you **must** provide `COMPLETED_AT`.
 * `OVERDUE` cannot be set manually.
 * The student and assignment must share **at least one group**.
 
@@ -491,6 +519,7 @@ Examples:
 Finds students whose names contain any of the given keywords.
 
 Format: `find /students <keywords>`
+{: .format}
 
 Rules:
 
@@ -519,13 +548,14 @@ Examples:
 
 Finds all students and assignments that belong to the specified group.
 
-Format: `find /groups <groupName>`
+Format: `find /groups GROUP_NAME`
+{: .format}
 
 Rules:
 
 * The student list is filtered to show only students in the specified group.
 * The assignment list is filtered to show only assignments tagged to that group.
-* The group name should match an existing group name exactly.
+* The group name should match an existing group name exactly (case-sensitive).
 * If no matching group is found, no students and no assignments will be shown.
 
 Example:
@@ -547,7 +577,7 @@ Clears all student and assignment entries from LeTutor.
 Format: `clear`
 
 > **Warning:**
-> This permanently deletes all student and assignment data in the app.
+> This permanently deletes all student and assignment data in the app. There is no confirmation step or message.
 {: .note}
 
 **Expected output:** The lists become empty and a confirmation message is shown.
@@ -615,23 +645,23 @@ A: Yes. Separate group names with commas when adding or editing an assignment.
 ## Command Summary
 The list below is in alphabetical order:
 
-| Action                     | Format                                                                        | Example                                                         |
-|----------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| **Help**                   | `help`                                                                        | `help`                                                          |
-| **Add student**            | `add /students {<name>; <phone>; <email>; <groups>}`                          | `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`  |
-| **Edit student**           | `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`             | `edit /students S1 {John Doe; 98765432; johnd@mail.com; Sec3B}` |
-| **Delete student**         | `delete /students <studentId>`                                                | `delete /students S3`                                           |
-| **Add assignment**         | `add /assignments {<label>; <groups>; <dueDate>}`                             | `add /assignments {Math; Sec3A, Sec3B; 2026-03-20}`             |
-| **Edit assignment**        | `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`             | `edit /assignments A1 {Quiz 2; Sec3A, Sec3B; 2026-04-01}`       |
-| **Delete assignment**      | `delete /assignments <assignmentId>`                                          | `delete /assignments A2`                                        |
-| **List all**               | `list`                                                                        | `list`                                                          |
-| **List students**          | `get /students`                                                               | `get /students`                                                 |
-| **List assignments**       | `get /assignments`                                                            | `get /assignments`                                              |
-| **Get student**            | `get /students <studentId>`                                                   | `get /students S3`                                              |
-| **Get assignment**         | `get /assignments <assignmentId>`                                             | `get /assignments A2`                                           |
-| **Get student milestones** | `get /students <studentId> /milestones`                                       | `get /students S1 /milestones`                                  |
-| **Set milestone**          | `set /students <studentId> /milestones <assignmentId> <status> [completedAt]` | `set /students S1 /milestones A1 COMPLETED 2026-03-30T1200H`    |
-| **Find students**          | `find /students <keywords>`                                                   | `find /students alex david`                                     |
-| **Find groups**            | `find /groups <groupName>`                                                    | `find /groups Science`                                          |
-| **Clear**                  | `clear`                                                                       | `clear`                                                         |
-| **Exit**                   | `exit`                                                                        | `exit`                                                          |
+| Action                     | Format                                                                     | Example                                                         |
+|----------------------------|----------------------------------------------------------------------------|-----------------------------------------------------------------|
+| **Help**                   | `help`                                                                     | `help`                                                          |
+| **Add student**            | `add /students {NAME; PHONE; EMAIL; GROUPS}`                        | `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`  |
+| **Edit student**           | `edit /students STUDENT_ID {NAME; PHONE; EMAIL; GROUPS}`           | `edit /students S1 {John Doe; 98765432; johnd@mail.com; Sec3B}` |
+| **Delete student**         | `delete /students STUDENT_ID`                                              | `delete /students S3`                                           |
+| **Add assignment**         | `add /assignments {LABEL; GROUPS; DUE_DATE}`                           | `add /assignments {Math; Sec3A, Sec3B; 2026-03-20}`             |
+| **Edit assignment**        | `edit /assignments ASSIGNMENT_ID {LABEL; GROUPS; DUE_DATE}`             | `edit /assignments A1 {Quiz 2; Sec3A, Sec3B; 2026-04-01}`       |
+| **Delete assignment**      | `delete /assignments ASSIGNMENT_ID>`                                       | `delete /assignments A2`                                        |
+| **List all**               | `list`                                                                     | `list`                                                          |
+| **List students**          | `get /students`                                                            | `get /students`                                                 |
+| **List assignments**       | `get /assignments`                                                         | `get /assignments`                                              |
+| **Get student**            | `get /students STUDENT_ID`                                                 | `get /students S3`                                              |
+| **Get assignment**         | `get /assignments ASSIGNMENT_ID`                                           | `get /assignments A2`                                           |
+| **Get student milestones** | `get /students STUDENT_ID /milestones`                                    | `get /students S1 /milestones`                                  |
+| **Set milestone**          | `set /students STUDENT_ID /milestones ASSIGNMENT_ID STATUS [COMPLETED_AT]` | `set /students S1 /milestones A1 COMPLETED 2026-03-30T1200H`    |
+| **Find students**          | `find /students <keywords>`                                                | `find /students alex david`                                     |
+| **Find groups**            | `find /groups GROUP_NAME`                                                 | `find /groups Science`                                          |
+| **Clear**                  | `clear`                                                                    | `clear`                                                         |
+| **Exit**                   | `exit`                                                                     | `exit`                                                          |
