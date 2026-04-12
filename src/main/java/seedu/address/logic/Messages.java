@@ -98,7 +98,7 @@ public class Messages {
                 .append(person.getPhone())
                 .append("; Email: ")
                 .append(person.getEmail())
-                .append("; Group: ")
+                .append("; Group(s): ")
                 .append(person.getGroups().stream()
                         .map(g -> g.getGroupName().name)
                         .collect(Collectors.joining(", ")));
@@ -114,7 +114,7 @@ public class Messages {
                 .append(assignment.getAssignmentId())
                 .append("; Label: ")
                 .append(assignment.getLabel())
-                .append("; Group: ")
+                .append("; Group(s): ")
                 .append(assignment.getGroups().stream()
                         .map(g -> g.getGroupName().name)
                         .collect(Collectors.joining(", ")))

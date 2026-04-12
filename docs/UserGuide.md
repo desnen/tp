@@ -225,13 +225,59 @@ Examples:
 
 ---
 
-### Adding an assignment 
+### Editing a student : `edit /students`
 
-`add /assignments`
+Edits the details of an existing student.
+
+Format: `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`
+
+Rules:
+
+* The `studentId` identifies which student to edit.
+* You may leave fields empty if you do not want to change them.
+* The groups field follows the same format as `add /students`.
+
+Examples:
+
+* `edit /students S2 {John Doe; 98765432; johnd@mail.com; Sec3B}`
+* `edit /students S2 {John; ; ;}`
+
+> **Tip:**
+> Use empty fields carefully. Keep the semicolons in place so LeTutor can tell which field you are skipping.
+{: .tip}
+
+**Expected output:** The student's details are updated and a confirmation message is shown.
+
+![Edit student result](images/edit-student.png)
+
+---
+
+### Deleting a student : `delete /students`
+
+Deletes a student from LeTutor.
+
+Format: `delete /students <studentId>`
+
+Example:
+
+* `delete /students S3`
+
+> **Warning:**
+> Deletion is permanent and cannot be undone within the app.
+{: .warning
+
+**Expected output:** The student is removed and a confirmation message is shown.
+
+![Delete student result](images/delete-student.png)
+
+---
+
+### Adding an assignment: `add /assignments`
 
 Adds an assignment to LeTutor.
 
 Format: `add /assignments {<label>; <groups>; <dueDate>}`
+{: .format}
 
 **Parameter reference:**
 
@@ -253,6 +299,50 @@ Examples:
 **Expected output:** The assignment appears in the assignment list and a confirmation message is shown.
 
 ![Add assignment result](images/add-assignment.png)
+
+---
+
+### Editing an assignment : `edit /assignments`
+
+Edits the details of an existing assignment.
+
+Format: `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`
+
+Rules:
+
+* The `assignmentId` identifies which assignment to edit.
+* You may leave fields empty if you do not want to change them.
+* The groups field supports multiple groups separated by commas.
+
+Examples:
+
+* `edit /assignments A1 {A-Testing; Sec3A; 2026-05-30}`
+* `edit /assignments A2 {Math Worksheet; Sec3A, Sec3B; 2026-05-01}`
+* `edit /assignments A3 {Quiz 2; ; }`
+
+**Expected output:** The assignment is updated and a confirmation message is shown.
+
+![Edit assignment result](images/edit-assignment.png)
+
+---
+
+### Deleting an assignment : `delete /assignments`
+
+Deletes an assignment from LeTutor.
+
+Format: `delete /assignments <assignmentId>`
+
+Example:
+
+* `delete /assignments A2`
+
+> **Warning:**
+> Deleting an assignment removes it from the system permanently.
+{: .note}
+
+**Expected output:** The assignment is removed and a confirmation message is shown.
+
+![Delete assignment result](images/delete-assignment.png)
 
 ---
 
@@ -280,6 +370,16 @@ Format: `get /students`
 
 ---
 
+### Listing all assignments only: `get /assignments`
+
+Shows all assignments currently in LeTutor.
+
+Format: `get /assignments`
+
+**Expected output:** The assignment list shows all assignments.
+
+---
+
 ### Viewing a student's details : `get /students <studentId>`
 
 Shows the details of a specific student.
@@ -293,9 +393,28 @@ Example:
 
 * `get /students S1`
 
-**Expected output:** The selected student's details are shown in the app.
+**Expected output:** The selected student is shown in the student panel.
 
 ![Get student result](images/get-student.png)
+
+---
+
+### Viewing a specific assignment : `get /assignments <assignmentId>`
+
+Shows the selected assignment in the app.
+
+Format: `get /assignments <assignmentId>`
+
+Rules:
+
+* Assignment IDs are automatically generated.
+* Assignment IDs are shown in the format `A1`, `A2`, `A3`, ...
+
+Example:
+
+* `get /assignments A1`
+
+**Expected output:** The selected assignment is shown in the assignment panel.
 
 ---
 
@@ -367,35 +486,6 @@ Examples:
 
 ---
 
-### Listing all assignments : `get /assignments`
-
-Shows all assignments currently in LeTutor.
-
-Format: `get /assignments`
-
-**Expected output:** The assignment list shows all assignments.
-
----
-
-### Viewing a specific assignment : `get /assignments <assignmentId>`
-
-Shows the selected assignment in the app.
-
-Format: `get /assignments <assignmentId>`
-
-Rules:
-
-* Assignment IDs are automatically generated.
-* Assignment IDs are shown in the format `A1`, `A2`, `A3`, ...
-
-Example:
-
-* `get /assignments A1`
-
-**Expected output:** The selected assignment is shown in the assignment panel.
-
----
-
 ### Finding students by name : `find /students`
 
 Finds students whose names contain any of the given keywords.
@@ -450,97 +540,6 @@ Example:
 
 ---
 
-### Editing a student : `edit /students`
-
-Edits the details of an existing student.
-
-Format: `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`
-
-Rules:
-
-* The `studentId` identifies which student to edit.
-* You may leave fields empty if you do not want to change them.
-* The groups field follows the same format as `add /students`.
-
-Examples:
-
-* `edit /students S2 {John Doe; 98765432; johnd@mail.com; Sec3B}`
-* `edit /students S2 {John; ; ;}`
-
-> **Tip:**
-> Use empty fields carefully. Keep the semicolons in place so LeTutor can tell which field you are skipping.
-{: .tip}
-
-**Expected output:** The student's details are updated and a confirmation message is shown.
-
-![Edit student result](images/edit-student.png)
-
----
-
-### Editing an assignment : `edit /assignments`
-
-Edits the details of an existing assignment.
-
-Format: `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`
-
-Rules:
-
-* The `assignmentId` identifies which assignment to edit.
-* You may leave fields empty if you do not want to change them.
-* The groups field supports multiple groups separated by commas.
-
-Examples:
-
-* `edit /assignments A1 {A-Testing; Sec3A; 2026-05-30}`
-* `edit /assignments A2 {Math Worksheet; Sec3A, Sec3B; 2026-05-01}`
-* `edit /assignments A3 {Quiz 2; ; }`
-
-**Expected output:** The assignment is updated and a confirmation message is shown.
-
-![Edit assignment result](images/edit-assignment.png)
-
----
-
-### Deleting a student : `delete /students`
-
-Deletes a student from LeTutor.
-
-Format: `delete /students <studentId>`
-
-Example:
-
-* `delete /students S3`
-
-> **Warning:**
-> Deletion is permanent and cannot be undone within the app.
-{: .warning
-
-**Expected output:** The student is removed and a confirmation message is shown.
-
-![Delete student result](images/delete-student.png)
-
----
-
-### Deleting an assignment : `delete /assignments`
-
-Deletes an assignment from LeTutor.
-
-Format: `delete /assignments <assignmentId>`
-
-Example:
-
-* `delete /assignments A2`
-
-> **Warning:**
-> Deleting an assignment removes it from the system permanently.
-{: .note}
-
-**Expected output:** The assignment is removed and a confirmation message is shown.
-
-![Delete assignment result](images/delete-assignment.png)
-
----
-
 ### Clearing all entries : `clear`
 
 Clears all student and assignment entries from LeTutor.
@@ -580,12 +579,12 @@ LeTutor data is saved automatically as a JSON file at:
 Advanced users may update the data file directly.
 
 > **Caution:**
-> If the file is edited into an invalid format, LeTutor may discard the data and start with an empty file on the next run.
+> If the file is edited into an invalid format, LeTutor may discard the data and start with an empty file on the next run or crash and become unusable.
 {: .caution}
 
 > **Warning:**
 > Only edit the data file if you are confident that you understand the structure.
-{: .warning
+{: .warning}
 
 ---
 
@@ -593,9 +592,6 @@ Advanced users may update the data file directly.
 
 **Q: How do I move my data to another computer?**
 A: Install LeTutor on the other computer and replace its generated data file with the `addressbook.json` file from your original LeTutor folder.
-
-**Q: Why can't I see all students after using `find /students` or `find /groups`?**
-A: Those commands filter the current view. Run `list` to return to the full student list.
 
 **Q: Why does `get /students S1 /milestones` not show every assignment in the system?**
 A: A student only sees assignments that share at least one group with that student.
@@ -616,24 +612,26 @@ A: Yes. Separate group names with commas when adding or editing an assignment.
 
 ---
 
-## Command Summary
+## Command Summary 
+The list below is in alphabetical order:
 
 | Action                     | Format                                                                        | Example                                                         |
-| -------------------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------- |
+|----------------------------|-------------------------------------------------------------------------------|-----------------------------------------------------------------|
 | **Help**                   | `help`                                                                        | `help`                                                          |
 | **Add student**            | `add /students {<name>; <phone>; <email>; <groups>}`                          | `add /students {John Doe; 98765432; johnd@example.com; Sec3A}`  |
+| **Edit student**           | `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`             | `edit /students S1 {John Doe; 98765432; johnd@mail.com; Sec3B}` |
+| **Delete student**         | `delete /students <studentId>`                                                | `delete /students S3`                                           |
 | **Add assignment**         | `add /assignments {<label>; <groups>; <dueDate>}`                             | `add /assignments {Math; Sec3A, Sec3B; 2026-03-20}`             |
-| **List students**          | `list`                                                                        | `list`                                                          |
+| **Edit assignment**        | `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`             | `edit /assignments A1 {Quiz 2; Sec3A, Sec3B; 2026-04-01}`       |
+| **Delete assignment**      | `delete /assignments <assignmentId>`                                          | `delete /assignments A2`                                        |
+| **List all**               | `list`                                                                        | `list`                                                          |
+| **List students**          | `get /students`                                                               | `get /students`                                                 |
 | **List assignments**       | `get /assignments`                                                            | `get /assignments`                                              |
 | **Get student**            | `get /students <studentId>`                                                   | `get /students S3`                                              |
+| **Get assignment**         | `get /assignments <assignmentId>`                                             | `get /assignments A2`                                           |
 | **Get student milestones** | `get /students <studentId> /milestones`                                       | `get /students S1 /milestones`                                  |
 | **Set milestone**          | `set /students <studentId> /milestones <assignmentId> <status> [completedAt]` | `set /students S1 /milestones A1 COMPLETED 2026-03-30T1200H`    |
-| **Get assignment**         | `get /assignments <assignmentId>`                                             | `get /assignments A2`                                           |
 | **Find students**          | `find /students <keywords>`                                                   | `find /students alex david`                                     |
 | **Find groups**            | `find /groups <groupName>`                                                    | `find /groups Science`                                          |
-| **Edit student**           | `edit /students <studentId> {<name>; <phone>; <email>; <groups>}`             | `edit /students S1 {John Doe; 98765432; johnd@mail.com; Sec3B}` |
-| **Edit assignment**        | `edit /assignments <assignmentId> {<label>; <groups>; <dueDate>}`             | `edit /assignments A1 {Quiz 2; Sec3A, Sec3B; 2026-04-01}`       |
-| **Delete student**         | `delete /students <studentId>`                                                | `delete /students S3`                                           |
-| **Delete assignment**      | `delete /assignments <assignmentId>`                                          | `delete /assignments A2`                                        |
 | **Clear**                  | `clear`                                                                       | `clear`                                                         |
 | **Exit**                   | `exit`                                                                        | `exit`                                                          |
