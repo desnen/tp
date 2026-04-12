@@ -14,7 +14,7 @@ import java.time.format.ResolverStyle;
 public final class CompletedAt {
     public static final String VALIDATION_REGEX = "^$|^\\d{4}-\\d{2}-\\d{2}T\\d{4}H$";
     public static final String MESSAGE_CONSTRAINTS =
-            "CompletedAt must be empty or a valid timestamp in the format YYYY-MM-DDTHHMMH.";
+            "CompletedAt must a valid timestamp in the format YYYY-MM-DDTHHMMH.";
     private static final DateTimeFormatter COMPLETED_AT_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HHmm'H'")
             .withResolverStyle(ResolverStyle.STRICT);
 
