@@ -612,7 +612,7 @@ A: Yes. Separate group names with commas when adding or editing an assignment.
 
 ---
 
-## Command Summary 
+## Command Summary
 The list below is in alphabetical order:
 
 | Action                     | Format                                                                        | Example                                                         |
