@@ -13,6 +13,7 @@ public class CompletedAtTest {
         assertTrue(CompletedAt.isValidCompletedAt("")); // blank allowed
         assertFalse(CompletedAt.isValidCompletedAt(" ")); // whitespace only
         assertFalse(CompletedAt.isValidCompletedAt("2026-03-30")); // missing time
+        assertFalse(CompletedAt.isValidCompletedAt("2026-03-30 1200")); // command input format, not storage format
         assertFalse(CompletedAt.isValidCompletedAt("30-03-2026T1200H")); // wrong date format
         assertFalse(CompletedAt.isValidCompletedAt("2026-05-32T0900H")); // impossible date
         assertFalse(CompletedAt.isValidCompletedAt("2026-03-30T2460H")); // impossible time
