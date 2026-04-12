@@ -13,7 +13,8 @@ import java.time.format.ResolverStyle;
  */
 public class DueDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "DueDate can only be in the format YYYY-MM-DD and should only contain digits";
+    public static final String MESSAGE_CONSTRAINTS = "DueDate can only be in the format YYYY-MM-DD "
+            + "and should only contain digits";
 
     public static final String MESSAGE_CONSTRAINTS_DATE = "DueDate cannot be an invalid date";
 
