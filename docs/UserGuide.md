@@ -35,22 +35,23 @@ Keeping track of multiple students, class groups, assignment deadlines, and comp
 3. [Features](#features)
    - [Notes about the command format](#notes-about-the-command-format)
    - [Viewing help — `help`](#viewing-help--help)
-   - [Adding a student — `add /students`](#adding-a-student--add-students)
-   - [Adding an assignment — `add /assignments`](#adding-an-assignment--add-assignments)
-   - [Listing all students — `list`](#listing-all-students--list)
-   - [Listing all assignments — `get /assignments`](#listing-all-assignments--get-assignments)
-   - [Viewing a student's details — `get /students`](#viewing-a-students-details--get-students)
-   - [Viewing student milestones — `get /students ... /milestones`](#viewing-student-milestones--get-students--milestones)
-   - [Updating a milestone — `set /students ... /milestones`](#updating-a-milestone--set-students--milestones)
-   - [Viewing a specific assignment — `get /assignments <assignmentId>`](#viewing-a-specific-assignment--get-assignments-assignmentid)
-   - [Finding students by name — `find /students`](#finding-students-by-name--find-students)
-   - [Finding by group — `find /groups`](#finding-by-group--find-groups)
-   - [Editing a student — `edit /students`](#editing-a-student--edit-students)
-   - [Editing an assignment — `edit /assignments`](#editing-an-assignment--edit-assignments)
-   - [Deleting a student — `delete /students`](#deleting-a-student--delete-students)
-   - [Deleting an assignment — `delete /assignments`](#deleting-an-assignment--delete-assignments)
-   - [Clearing all entries — `clear`](#clearing-all-entries--clear)
-   - [Exiting — `exit`](#exiting-the-program--exit)
+   - [Adding a student — `add /students`](#adding-a-student-add-students)
+   - [Editing a student — `edit /students`](#editing-a-student-edit-students)
+   - [Deleting a student — `delete /students`](#deleting-a-student-delete-students)
+   - [Adding an assignment — `add /assignments`](#adding-an-assignment-add-assignments)
+   - [Editing an assignment — `edit /assignments`](#editing-an-assignment-edit-assignments)
+   - [Deleting an assignment — `delete /assignments`](#deleting-an-assignment-delete-assignments)
+   - [Listing all students and assignments — `list`](#listing-all-students-and-assignments-list)
+   - [Listing all students only — `get /students`](#listing-all-students-only-get-students)
+   - [Listing all assignments only — `get /assignments`](#listing-all-assignments-only-get-assignments)
+   - [Viewing a specific student — `get /students STUDENT_ID`](#viewing-a-specific-student-get-students-student-id)
+   - [Viewing a specific assignment — `get /assignments ASSIGNMENT_ID`](#viewing-a-specific-assignment-get-assignments-assignment-id)
+   - [Viewing student milestones — `get /students ... /milestones`](#viewing-student-milestones-get-students-milestones)
+   - [Updating a milestone — `set /students ... /milestones`](#updating-a-milestone-set-students-milestones)
+   - [Finding students by name — `find /students`](#finding-students-by-name-find-students)
+   - [Finding by group — `find /groups`](#finding-by-group-find-groups)
+   - [Clearing all entries — `clear`](#clearing-all-entries-clear)
+   - [Exiting — `exit`](#exiting-the-program-exit)
    - [Saving the data](#saving-the-data)
    - [Editing the data file](#editing-the-data-file)
 4. [FAQ](#faq)
@@ -266,7 +267,7 @@ Example:
 
 > **Warning:**
 > Deletion is permanent and cannot be undone within the app.
-{: .warning
+{: .warning}
 
 **Expected output:** The student is removed and a confirmation message is shown.
 
@@ -359,7 +360,7 @@ Example:
 
 ---
 
-### Listing all students and assignments: `list`
+### Listing all students and assignments : `list`
 
 Shows all students and assignments currently in LeTutor.
 
@@ -374,7 +375,7 @@ Format: `list`
 
 ---
 
-### Listing all students only: `get /students`
+### Listing all students only : `get /students`
 
 Shows all students currently in LeTutor.
 
@@ -385,7 +386,7 @@ Format: `get /students`
 
 ---
 
-### Listing all assignments only: `get /assignments`
+### Listing all assignments only : `get /assignments`
 
 Shows all assignments currently in LeTutor.
 
@@ -396,9 +397,9 @@ Format: `get /assignments`
 
 ---
 
-### Viewing a student's details : `get /students STUDENT_ID`
+### Viewing a specific student : `get /students STUDENT_ID`
 
-Shows the details of a specific student.
+Shows the selected student in the app.
 
 Format: `get /students STUDENT_ID`
 {: .format}
