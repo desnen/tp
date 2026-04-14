@@ -95,6 +95,78 @@ java -jar letutor.jar
 
 ---
 
+### CLI Tutorial
+
+#### What is CLI?
+
+A Command Line Interface (CLI) is usually described as a text-based interface for interacting with an application or system (like LeTutor!). 
+With our CLI, you can enter text commands to store information and perform tasks in LeTutor quickly.
+
+#### Your first few LeTutor commands
+
+New to CLI? Don't worry, with practice you will definitely become comfortable using it.
+Here are some easy commands for you to get started with and get used to:
+
+###### 1. `help`!
+
+When you don't know how to do something, you would say "Help!". You can do this in LeTutor too! Simply type the command `help` in the LeTutor command box and press <kbd>Enter</kbd>. This will just trigger a pop-up that gives you a link back to this exact user guide, but the next few commands will be more useful.
+
+###### 2. Adding a student
+
+Congrats! You have just run your first command! The next command will be slightly more challenging. 
+
+To add a student, type the following command in the command box and press the <kbd>Enter</kbd> key.
+
+```
+add /students {John Doe; 97843321; JohnDoe@gmail.com; Math, Group2}
+```
+You will now see the student "John Doe" with the relevant details in the student list panel! To see the full details about adding a student, read the [Add Student](#adding-a-student-add-students) section.
+
+###### 3. Adding an assignment
+
+Now that you have added a student, let's try adding an assignment for them!
+
+```
+add /assignments {Math Homework; Math; 2026-04-30}
+```
+
+You will see the assignment in the assignment list panel. To see the full details about adding an assignment, read the [Add Assignment](#adding-an-assignment-add-assignments) section.
+
+###### 4. Setting a milestone status
+
+After adding a student and an assignment, you can now mark the assignment as completed for that student.
+
+```
+set /students S1 /milestone A1 COMPLETED 2026-04-11 1600
+```
+
+A confirmation message will be shown with the details of the milestone status you have just set. More information on the `set milestone` command can be found [here](#updating-a-milestone-set-students-milestones)
+
+###### 5. Viewing the milestone status
+
+Let's view the milestone status you have just set.
+
+```
+get /students S1 /milestones
+```
+
+A message showing you the milestone statuses of the student will be displayed in the results box.
+
+###### 6. Deleting the student and assignment
+
+The tutorial is almost over, let's clean up LeTutor for your own personal use. Run the command
+```
+delete /students S1
+```
+followed by
+```
+delete /assignments A1
+```
+
+You will see empty lists for both the student and assignment list panels. Now LeTutor is ready for your own use!
+
+---
+
 ## Key Concepts
 
 Here are the core concepts that LeTutor uses:
@@ -248,7 +320,7 @@ Rules:
 * The `STUDENT_ID` identifies which student to edit.
 * You may leave fields empty if you do not want to change them.
 * Semicolons `;` must still be typed to indicate the fields.
-* The `GROUPS` field follow the same rules and formatting as the one in `add /students`.
+* The `GROUPS` field follows the same rules and formatting previously mentioned in [Add Students](#adding-a-student-add-students).
 
 Examples:
 
@@ -281,7 +353,7 @@ Example:
 {: .note}
 
 > **Caution:**
-> Deletion is permanent and cannot be undone within the app.
+> Deletion is permanent and cannot be undone within the app. There will be no confirmation step before deletion.
 {: .caution}
 
 **Expected output:** The student is removed and a confirmation message is shown.
@@ -308,7 +380,7 @@ Format: `add /assignments {LABEL; GROUPS; DUE_DATE}`
 Rules:
 * Assignments can belong to more than one group.
 * The label and group fields must not contain `;`.
-* The `GROUPS` field follows the same rules and formatting as the one in `add /students`.
+* The `GROUPS` field follows the same rules and formatting previously mentioned in [Add Students](#adding-a-student-add-students).
 * The `DUE_DATE` field must follow the specified format strictly.
 
 Examples:
@@ -338,7 +410,7 @@ Rules:
 * The `ASSIGNMENT_ID` identifies which assignment to edit.
 * You may leave fields empty if you do not want to change them.
 * Semicolons `;` must still be typed to indicate the fields.
-* The groups field supports multiple groups separated by commas.
+* The `GROUPS` field follows the same rules and formatting previously mentioned in [Add Students](#adding-a-student-add-students).
 
 Examples:
 
@@ -367,7 +439,7 @@ Example:
 {: .note}
 
 > **Caution:**
-> Deleting an assignment removes it from the system permanently.
+> Deletion is permanent and cannot be undone within the app. There will be no confirmation step before deletion.
 {: .caution}
 
 **Expected output:** The assignment is removed and a confirmation message is shown.
