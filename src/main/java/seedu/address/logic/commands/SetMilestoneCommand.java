@@ -2,9 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.Collections;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -82,11 +79,7 @@ public class SetMilestoneCommand extends Command {
 
         model.setMilestone(studentId, assignmentId, status, completedAt);
 
-        String completedAtValue = completedAt.getValue().isBlank() ? "-" :
-                LocalDateTime.parse(completedAt.getValue(),
-                                DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HHmm'H'")
-                                        .withResolverStyle(ResolverStyle.STRICT))
-                                .format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));;
+        String completedAtValue = completedAt.getValue().isBlank() ? "-" : completedAt.getValue();
         return new CommandResult(String.format(
                 MESSAGE_SUCCESS, studentId, assignmentId, status, completedAtValue));
     }
